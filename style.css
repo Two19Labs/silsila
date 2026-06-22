@@ -1,29 +1,31 @@
 /* --------------------------------------------------
-   SILSILA REDESIGN - HIGH-END EDITORIAL AESTHETIC
-   Cinematic Parallax, Mouse-Follow Preview, Staggered Grids.
+   SILSILA STYLE SHEET - SPECIFICATION BRIEF
+   Aesop & Muji Inspired Editorial Layout.
 -------------------------------------------------- */
 
 :root {
-    /* Silsila Cafe Physical Color Palette */
-    --color-bg: #f2ede4;         /* Flax/Oatmeal Plaster */
-    --color-text: #1c1c1c;       /* Matte Carbon Charcoal */
-    --color-muted: #8a8276;      /* Soft Taupe Gray */
-    --color-accent: #3d4b3e;     /* Kumaon Forest Olive */
-    --color-terracotta: #a2543b; /* Terracotta Clayware Rust */
-    --color-wood: #5c4638;       /* Reclaimed Walnut Wood */
-    --color-line: rgba(28, 28, 28, 0.08); /* Minimal divider line */
+    /* Brand Specification Colors */
+    --color-bg: #F4EFE8;         /* Warm Ivory */
+    --color-text: #222222;       /* Soft Charcoal */
+    --color-oak: #D0A06A;        /* Light Oak Accent */
+    --color-sage: #5B6F5E;       /* Sage Green Accent */
+    --color-coffee: #6B4B36;     /* Coffee Brown */
+    
+    /* Secondary & System Colors */
+    --color-placeholder-bg: #EAE4D9; /* Darker warm ivory for image boxes */
+    --color-line: rgba(34, 34, 34, 0.08); /* Minimal line separators */
+    --color-muted: #8A7E72;               /* Muted Warm Gray */
 
     /* Typography */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Spacing Scales */
-    --grid-gap: 5rem;
-    --section-pad: 10rem;
+    --grid-gap: 4rem;
+    --section-pad: 8rem;
 }
 
-
-/* 1. Global Setup & Smooth scroll baseline */
+/* 1. Global Reset & Spacing Basics */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -52,7 +54,7 @@ body {
     background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--color-muted);
+    background: var(--color-oak);
 }
 
 h1, h2, h3, h4 {
@@ -68,22 +70,22 @@ a {
 }
 
 a:hover {
-    opacity: 0.7;
+    opacity: 0.75;
 }
 
-/* 2. Navigation Header with waveform controls */
+/* 2. Navigation Header */
 .site-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 2.5rem 0;
-    background: rgba(242, 237, 228, 0.85);
+    padding: 2.2rem 0;
+    background: rgba(244, 239, 232, 0.9);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--color-line);
-    transition: transform 0.4s ease, background 0.4s ease;
+    transition: transform 0.4s ease;
 }
 
 .site-header.hide {
@@ -91,12 +93,12 @@ a:hover {
 }
 
 .header-inner {
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 4rem;
+    padding: 0 3rem;
 }
 
 .logo {
@@ -108,7 +110,7 @@ a:hover {
 
 .main-nav {
     display: flex;
-    gap: 3.5rem;
+    gap: 3rem;
 }
 
 .main-nav a {
@@ -127,7 +129,7 @@ a:hover {
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--color-accent);
+    background-color: var(--color-oak);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -165,8 +167,8 @@ a:hover {
 }
 
 .sound-status-dot.playing {
-    background-color: var(--color-accent);
-    box-shadow: 0 0 10px var(--color-accent);
+    background-color: var(--color-sage);
+    box-shadow: 0 0 10px var(--color-sage);
     animation: sound-pulse 1s infinite alternate;
 }
 
@@ -196,120 +198,68 @@ a:hover {
     100% { transform: translateX(-20px); }
 }
 
-/* 3. Hero Section (Slideshow + split grid) */
-.hero-section {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-    padding-top: 6rem;
-}
-
-.hero-text-block {
-    padding: 6rem 5rem 6rem 6rem;
+/* 3. Aesthetic Image Placeholders (Spec Compliant) */
+.media-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-placeholder-bg);
+    border: 1px dashed var(--color-oak);
+    border-radius: 6px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.hero-meta {
-    font-size: 0.8rem;
-    letter-spacing: 4px;
-    color: var(--color-muted);
-    margin-bottom: 2rem;
-    font-weight: 400;
-}
-
-.hero-title {
-    font-size: clamp(3.2rem, 5.5vw, 4.8rem);
-    line-height: 1.15;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-}
-
-.hero-desc {
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: #4a4a4a;
-    line-height: 1.8;
-    margin-bottom: 3.5rem;
-    max-width: 500px;
-}
-
-.scroll-btn {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    border-bottom: 1.5px solid var(--color-text);
-    padding-bottom: 6px;
-    display: inline-flex;
     align-items: center;
-    gap: 12px;
-}
-
-.scroll-btn .arrow {
-    display: inline-block;
-    animation: arrow-bounce 1s infinite alternate;
-}
-
-@keyframes arrow-bounce {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(6px); }
-}
-
-.hero-image-block {
-    height: 100vh;
-    width: 100%;
+    justify-content: center;
+    padding: 2rem;
+    transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
 }
 
-.hero-slideshow {
+.media-placeholder::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-}
-
-.hero-slideshow .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out, transform 8s linear;
-    z-index: 1;
-}
-
-.hero-slideshow .slide.active {
-    opacity: 1;
-    z-index: 2;
-    transform: scale(1.08); /* Gentle zoom pan during active state */
-}
-
-.hero-slideshow-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, 
-        rgba(242, 237, 228, 1) 0%, 
-        rgba(242, 237, 228, 0.45) 45%, 
-        rgba(242, 237, 228, 0) 100%
-    );
-    z-index: 3;
+    background-image: radial-gradient(rgba(34,34,34,0.01) 1px, transparent 1px);
+    background-size: 6px 6px;
     pointer-events: none;
 }
 
-/* 4. Text & Image Scroll Reveal CSS rules */
+.placeholder-icon {
+    font-size: 2.2rem;
+    opacity: 0.7;
+    margin-bottom: 12px;
+}
+
+.media-placeholder::after {
+    content: attr(data-label);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-text);
+    opacity: 0.8;
+    text-align: center;
+}
+
+.media-placeholder:hover {
+    background: #E5DFC9; /* Subtle shift on hover */
+    border-color: var(--color-sage);
+}
+
+/* Specific heights for placeholder categories */
+.hero-image { height: 100vh; border-radius: 0; border: none; }
+.rect-image { height: 500px; }
+.portrait-image { height: 540px; }
+.map-image { height: 450px; }
+.sq-image { height: 260px; border-radius: 0; border-style: solid; border-color: var(--color-line); }
+
+/* 4. Scroll Reveal Animations (Subtle Fades) */
 .reveal-text {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
                 transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -321,7 +271,7 @@ a:hover {
 
 .reveal-img {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(40px);
     transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -331,23 +281,146 @@ a:hover {
     transform: translateY(0);
 }
 
-.reveal-img .img-wrap {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    border-radius: 2px;
+.reveal-img .media-placeholder {
+    transform: scale(1.05);
+    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
 }
 
-.reveal-img img {
-    transform: scale(1.15);
-    transition: transform 2.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-img.reveal-active img {
+.reveal-img.reveal-active .media-placeholder {
     transform: scale(1);
 }
 
-/* 5. Intro Section */
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
+
+/* 5. Hero Section (More Than Coffee) */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 6rem;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, 
+        rgba(244, 239, 232, 0.95) 0%, 
+        rgba(244, 239, 232, 0.75) 45%, 
+        rgba(244, 239, 232, 0.1) 100%
+    );
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 700px;
+    z-index: 10;
+}
+
+.hero-meta {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: var(--color-coffee);
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.hero-title {
+    font-size: clamp(3.5rem, 6.5vw, 5.5rem);
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.hero-desc {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 3.5rem;
+    max-width: 500px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* Elegant Buttons */
+.btn {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.8rem 2.4rem;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    border: 1px solid var(--color-text);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-sage);
+    border-color: var(--color-sage);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-oak);
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-text);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text);
+    font-size: 0.8rem;
+    opacity: 0.7;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.scroll-arrow {
+    display: inline-block;
+    animation: arrow-bounce 1s infinite alternate;
+}
+
+@keyframes arrow-bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(6px); }
+}
+
+/* 6. Section 2: What is Silsila? */
 .intro-section {
     padding: var(--section-pad) 4rem;
     border-bottom: 1px solid var(--color-line);
@@ -360,27 +433,64 @@ a:hover {
 
 .intro-grid {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     gap: var(--grid-gap);
-    margin-top: 3rem;
+    align-items: center;
+}
+
+.intro-text-block {
+    padding-left: 2rem;
+}
+
+.intro-meta {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-oak);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    font-weight: 300;
 }
 
 .intro-large-text {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     line-height: 1.45;
     font-weight: 300;
-    color: var(--color-accent);
+    color: var(--color-coffee);
+    margin-bottom: 1.5rem;
 }
 
-.intro-details {
-    font-size: 1.15rem;
-    color: #4a4a4a;
-    line-height: 1.9;
-    padding-top: 10px;
+.intro-desc {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
 }
 
-/* 6. Asymmetric Staggered Visual Gallery */
+.intro-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--color-muted);
+}
+
+.intro-highlights .highlight-main {
+    color: var(--color-text);
+    font-weight: 400;
+    border-bottom: 1px solid var(--color-oak);
+    width: fit-content;
+    padding-bottom: 4px;
+}
+
+/* 7. Section 3: The Space (Masonry gallery placeholders) */
 .gallery-section {
     padding: var(--section-pad) 4rem;
     border-bottom: 1px solid var(--color-line);
@@ -399,174 +509,99 @@ a:hover {
     font-size: 0.85rem;
     letter-spacing: 2px;
     color: var(--color-muted);
+    font-weight: 500;
+}
+
+.gallery-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    margin-top: 8px;
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 6rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--grid-gap);
 }
 
 .gallery-item {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-bottom: 4rem;
 }
 
-/* Masonry Height Classes */
-.item-tall { height: 620px; }
-.item-short { height: 420px; margin-top: 8rem; }
-.item-mid { height: 500px; }
+.item-tall { height: 600px; }
+.item-short { height: 400px; margin-top: 6rem; }
+.item-mid { height: 480px; }
 
-.gallery-item .img-wrap {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 2px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-}
-
-.gallery-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.gallery-item:hover .gallery-img {
-    transform: scale(1.05);
-}
-
-.gallery-caption {
-    margin-top: 1.5rem;
-}
-
-.gallery-caption h4 {
-    font-size: 1.25rem;
-    margin-bottom: 4px;
-}
-
-.gallery-caption p {
-    font-size: 0.95rem;
-    color: var(--color-muted);
-}
-
-/* Delay reveals */
-.delay-1 { transition-delay: 0.15s; }
-.delay-2 { transition-delay: 0.3s; }
-.delay-3 { transition-delay: 0.45s; }
-
-/* 7. The Brews & Retail section (Interactive Hover-Reveal Menu) */
-.menu-section {
+/* 8. Section 4: Curated Living Cards */
+.curations-section {
     padding: var(--section-pad) 4rem;
     border-bottom: 1px solid var(--color-line);
-    position: relative;
 }
 
-.menu-container {
+.curations-container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.menu-desc {
-    font-size: 1.2rem;
-    color: var(--color-muted);
-    margin-top: 8px;
+.curations-meta {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-oak);
+    font-weight: 500;
 }
 
-.menu-layout {
+.curations-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-muted);
+    margin: 8px auto 0 auto;
+    max-width: 550px;
+}
+
+.curations-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--grid-gap);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
     margin-top: 5rem;
 }
 
-.menu-cat-title {
-    font-size: 1.8rem;
-    margin-bottom: 3rem;
-    border-bottom: 1px solid var(--color-line);
-    padding-bottom: 10px;
-    color: var(--color-accent);
+.curation-card {
+    background: #EAE4D9;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
-.menu-list {
-    display: flex;
-    flex-direction: column;
+.curation-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(34,34,34,0.05);
 }
 
-.menu-item-row {
-    position: relative;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--color-line);
-    cursor: pointer;
+.curation-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 
-.menu-item-row:hover {
-    border-bottom-color: var(--color-text);
-}
-
-.menu-item-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    font-family: var(--font-heading);
-    font-size: 1.55rem;
+.curation-title {
+    font-size: 1.6rem;
     font-weight: 400;
-    margin-bottom: 6px;
-    transition: transform 0.3s ease;
+    margin-bottom: 1rem;
+    color: var(--color-coffee);
 }
 
-.menu-item-row:hover .menu-item-line {
-    transform: translateX(10px);
-}
-
-.menu-item-price {
-    font-weight: 400;
-    color: var(--color-terracotta);
-}
-
-.menu-item-details {
+.curation-desc {
     font-size: 0.95rem;
-    color: #666;
-    transition: transform 0.3s ease;
+    color: #555;
+    line-height: 1.6;
 }
 
-.menu-item-row:hover .menu-item-details {
-    transform: translateX(10px);
-}
-
-/* Floating Follow Image Element */
-.floating-preview {
-    position: fixed;
-    width: 220px;
-    height: 280px;
-    pointer-events: none;
-    z-index: 1000;
-    overflow: hidden;
-    border-radius: 4px;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.6);
-    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
-}
-
-.floating-preview.active {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.preview-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* 8. Behind the Counter (Founder Section) */
+/* 9. Section 5: Meet Jagan (Founder & Note) */
 .founder-section {
     padding: var(--section-pad) 4rem;
-    background-color: #e5dfd6;
+    background-color: #EAE4D9;
     border-bottom: 1px solid var(--color-line);
 }
 
@@ -575,98 +610,298 @@ a:hover {
     margin: 0 auto;
 }
 
-.founder-layout {
+.founder-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1.2fr;
     gap: var(--grid-gap);
     align-items: center;
+}
+
+.founder-text-block {
+    padding-left: 2rem;
 }
 
 .founder-meta {
     font-size: 0.85rem;
     letter-spacing: 2px;
-    color: var(--color-muted);
-    margin-bottom: 2rem;
+    color: var(--color-coffee);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
 }
 
-.founder-quote {
+.founder-narrative {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 3rem;
+}
+
+.founder-narrative p {
+    margin-bottom: 1.2rem;
+}
+
+/* Handwritten Note Card */
+.founder-note-card {
+    background: var(--color-bg);
+    border-left: 3px solid var(--color-oak);
+    padding: 2.5rem;
+    border-radius: 4px;
+    box-shadow: 0 8px 25px rgba(34,34,34,0.03);
+}
+
+.note-quote {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
-    line-height: 1.45;
+    font-size: 1.65rem;
+    line-height: 1.5;
     font-style: italic;
-    font-weight: 300;
-    color: var(--color-accent);
-    margin-bottom: 2rem;
+    color: var(--color-coffee);
+    margin-bottom: 1.5rem;
 }
 
-.founder-name {
+.note-signature {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 500;
     display: block;
-    font-size: 1rem;
-    font-style: normal;
+    text-align: right;
+    color: var(--color-text);
+}
+
+/* 10. Section 6: A Day At Silsila (Timeline) */
+.timeline-section {
+    padding: var(--section-pad) 4rem;
+    border-bottom: 1px solid var(--color-line);
+}
+
+.timeline-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.timeline-meta {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-muted);
+    font-weight: 500;
+}
+
+.timeline-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-muted);
+    margin-top: 8px;
+}
+
+.timeline-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 6rem;
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline-flow::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    width: 1px;
+    height: calc(100% - 20px);
+    background-color: var(--color-oak);
+}
+
+.timeline-block {
+    position: relative;
+}
+
+.timeline-block::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: -33px;
+    width: 9px;
+    height: 9px;
+    background-color: var(--color-bg);
+    border: 2px solid var(--color-coffee);
+    border-radius: 50%;
+    z-index: 5;
+    transition: background-color 0.3s ease;
+}
+
+.timeline-block:hover::before {
+    background-color: var(--color-coffee);
+}
+
+.timeline-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 8px;
+}
+
+.time-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-oak);
+    letter-spacing: 1.5px;
+}
+
+.timeline-header h3 {
+    font-size: 1.8rem;
     font-weight: 400;
 }
 
-.founder-img-block {
-    height: 480px;
+.timeline-body p {
+    font-size: 1.05rem;
+    color: #555;
+    max-width: 600px;
+}
+
+/* 11. Section 7: Community Stories */
+.testimonials-section {
+    padding: var(--section-pad) 4rem;
+    background-color: #EAE4D9;
+    border-bottom: 1px solid var(--color-line);
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonials-meta {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-coffee);
+    font-weight: 500;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    margin-top: 5rem;
+}
+
+.testimonial-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+.testimonial-quote {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    line-height: 1.45;
+    font-style: italic;
+    color: var(--color-coffee);
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-style: normal;
+}
+
+/* 12. Section 8: Instagram Feed */
+.instagram-section {
+    padding: var(--section-pad) 4rem;
+    border-bottom: 1px solid var(--color-line);
+}
+
+.instagram-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.instagram-meta {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-muted);
+    font-weight: 500;
+}
+
+.instagram-subtitle a {
+    font-size: 1.4rem;
+    color: var(--color-coffee);
+    text-decoration: underline;
+}
+
+.instagram-masonry {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 5rem;
+}
+
+.insta-item {
     overflow: hidden;
 }
 
-.founder-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.2) sepia(0.08);
-}
-
-/* 9. Contact Section (Minimalist Letter with Wax Seal drop) */
+/* 13. Section 9: Write to Silsila (Letter-Style Form) */
 .contact-section {
     padding: var(--section-pad) 4rem;
     position: relative;
+    border-bottom: 1px solid var(--color-line);
 }
 
 .contact-container {
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+}
+
+.contact-meta {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-oak);
+    font-weight: 500;
 }
 
 .contact-desc {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     color: var(--color-muted);
-    margin-bottom: 4rem;
+    margin-top: 8px;
 }
 
 .letter-form {
-    background: var(--color-bg);
+    background-color: var(--color-bg);
     border: 1px solid var(--color-line);
+    box-shadow: 0 15px 45px rgba(34,34,34,0.03);
+    border-radius: 8px;
     padding: 5rem;
     position: relative;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.01);
+    overflow: hidden;
+    margin-top: 5rem;
 }
 
 .letter-body {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.95rem;
     line-height: 2.2;
+    color: var(--color-text);
 }
 
 .letter-body p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .letter-body input, .letter-body textarea {
     border: none;
-    border-bottom: 1px solid var(--color-muted);
+    border-bottom: 1.5px solid var(--color-line);
     background: transparent;
     font-family: var(--font-heading);
     font-size: 1.8rem;
-    color: var(--color-accent);
+    color: var(--color-coffee);
     outline: none;
     padding: 0 8px;
     transition: border-bottom-color 0.3s ease;
 }
 
 .letter-body input::placeholder, .letter-body textarea::placeholder {
-    color: rgba(133, 126, 116, 0.4);
+    color: rgba(107, 75, 54, 0.3);
     font-style: italic;
 }
 
@@ -702,6 +937,12 @@ a:hover {
     padding-bottom: 2px;
     cursor: pointer;
     color: var(--color-text);
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.submit-btn:hover {
+    color: var(--color-coffee);
+    border-bottom-color: var(--color-coffee);
 }
 
 /* Success Seal state */
@@ -727,7 +968,7 @@ a:hover {
 .wax-seal {
     width: 65px;
     height: 65px;
-    background-color: var(--color-terracotta);
+    background-color: var(--color-coffee);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -737,7 +978,7 @@ a:hover {
     font-size: 2.2rem;
     margin: 0 auto 2.5rem auto;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.25);
-    border: 2px dashed rgba(242, 237, 228, 0.4);
+    border: 2px dashed rgba(244, 239, 232, 0.4);
     opacity: 0;
     transform: scale(3.5);
     cursor: default;
@@ -760,7 +1001,8 @@ a:hover {
 
 .success-inner p {
     font-size: 1.15rem;
-    color: var(--color-muted);
+    color: var(--color-text);
+    opacity: 0.8;
     margin-bottom: 2.5rem;
 }
 
@@ -772,29 +1014,114 @@ a:hover {
     border-bottom: 1px solid var(--color-text);
     padding-bottom: 2px;
     cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-/* 10. Footer Section */
+.reset-btn:hover {
+    color: var(--color-coffee);
+    border-bottom-color: var(--color-coffee);
+}
+
+/* 14. Section 10: Visit Us */
+.visit-section {
+    padding: var(--section-pad) 4rem;
+    position: relative;
+}
+
+.visit-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.visit-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--grid-gap);
+    align-items: center;
+}
+
+.visit-meta {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-oak);
+    font-weight: 500;
+}
+
+.visit-address {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    line-height: 1.35;
+    margin: 1.5rem 0 3rem 0;
+}
+
+.visit-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.detail-block h4 {
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 10px;
+}
+
+.detail-block p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.detail-block .muted {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+}
+
+.visit-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.visit-link {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 4px;
+}
+
+.visit-map {
+    height: 450px;
+}
+
+/* 14. Site Footer */
 .site-footer {
-    background-color: #111111;
-    color: #e8e4db;
-    padding: 8rem 4rem 3rem 4rem;
+    background-color: #222222;
+    color: #F4EFE8;
+    padding: 6rem 4rem 3rem 4rem;
 }
 
 .footer-inner {
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: var(--grid-gap);
-    padding-bottom: 6rem;
-    border-bottom: 1px solid rgba(232, 228, 219, 0.06);
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(244, 239, 232, 0.08);
 }
 
 .footer-block h3 {
-    color: #e8e4db;
+    color: #F4EFE8;
     font-size: 2.4rem;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.footer-tagline {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--color-oak);
 }
 
 .footer-block h4 {
@@ -803,70 +1130,73 @@ a:hover {
     text-transform: uppercase;
     color: var(--color-muted);
     margin-bottom: 1.5rem;
-    font-family: var(--font-body);
+}
+
+.footer-block a {
+    display: block;
+    color: #eae4d9;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
 }
 
 .footer-block p {
     font-size: 0.95rem;
     line-height: 1.8;
-    color: #a5a198;
+    color: #eae4d9;
 }
 
 .footer-bottom {
-    max-width: 1400px;
-    margin: 3rem auto 0 auto;
-    display: flex;
-    justify-content: space-between;
+    max-width: 1300px;
+    margin: 2.5rem auto 0 auto;
+    text-align: center;
     font-size: 0.85rem;
     color: var(--color-muted);
 }
 
-/* 11. Responsive Styles */
+/* 15. Responsive Layout Scales */
 @media (max-width: 1024px) {
     .hero-section {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-    .hero-text-block {
-        padding: 8rem 4rem 4rem 4rem;
-    }
-    .hero-image-block {
-        height: 60vh;
-    }
-    .hero-slideshow-overlay {
-        background: linear-gradient(to bottom, 
-            rgba(242, 237, 228, 1) 0%, 
-            rgba(242, 237, 228, 0.45) 45%, 
-            rgba(242, 237, 228, 0) 100%
-        );
+        padding: 0 3rem;
     }
     .intro-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
+    .intro-text-block {
+        padding-left: 0;
+    }
     .gallery-grid {
         grid-template-columns: 1fr;
-        gap: 4rem;
+        gap: 3rem;
     }
     .item-short {
         margin-top: 0;
     }
-    .gallery-item {
-        height: auto;
+    .curations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
     }
-    .gallery-item .img-wrap {
-        height: 480px;
-    }
-    .menu-layout {
+    .founder-grid {
         grid-template-columns: 1fr;
-        gap: 4rem;
     }
-    .founder-layout {
+    .founder-text-block {
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .instagram-masonry {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .visit-grid {
         grid-template-columns: 1fr;
     }
     .footer-inner {
         grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        gap: 3rem;
     }
 }
 
@@ -876,6 +1206,16 @@ a:hover {
     }
     .header-inner {
         padding: 0 2rem;
+    }
+    .curations-grid {
+        grid-template-columns: 1fr;
+    }
+    .instagram-masonry {
+        grid-template-columns: 1fr;
+    }
+    .visit-details {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
     .letter-form {
         padding: 3rem;
@@ -889,10 +1229,6 @@ a:hover {
     }
     .footer-inner {
         grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-    .footer-bottom {
-        flex-direction: column;
-        gap: 15px;
+        gap: 3rem;
     }
 }

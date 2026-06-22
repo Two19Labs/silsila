@@ -1,13 +1,11 @@
 /* --------------------------------------------------
    SILSILA EDITORIAL SCRIPT
-   Slideshows, parallax observers, mouse follow previews.
+   Scroll reveals, synthesized soundscapes, and letter form interactions.
 -------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
-    initHeroSlideshow();
     initScrollReveal();
-    initMouseFollowPreview();
     initAmbientPlayer();
     initContactForm();
 });
@@ -15,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 /* 1. Header Hide/Show on Scroll */
 function initHeaderScroll() {
     const header = document.querySelector('.site-header');
+    if (!header) return;
+    
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
@@ -34,31 +34,14 @@ function initHeaderScroll() {
     });
 }
 
-/* 2. Hero Split Fading Slideshow */
-function initHeroSlideshow() {
-    const slides = document.querySelectorAll('.hero-slideshow .slide');
-    if (!slides.length) return;
-
-    let currentIndex = 0;
-    const slideInterval = 4000; // 4 seconds
-
-    function showNextSlide() {
-        slides[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        slides[currentIndex].classList.add('active');
-    }
-
-    setInterval(showNextSlide, slideInterval);
-}
-
-/* 3. Scroll Reveal Observers */
+/* 2. Scroll Reveal Observers (Intersection Observer) */
 function initScrollReveal() {
     const revealElements = document.querySelectorAll('.reveal-text, .reveal-img');
 
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.12
+        threshold: 0.1
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -73,46 +56,7 @@ function initScrollReveal() {
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
-/* 4. Mouse-Follow Image Preview (Menu Row Effect) */
-function initMouseFollowPreview() {
-    const menuRows = document.querySelectorAll('.menu-item-row');
-    const previewContainer = document.getElementById('floatingPreview');
-    const previewImg = document.getElementById('previewImg');
-
-    if (!menuRows.length || !previewContainer || !previewImg) return;
-
-    // Direct mapping of previews to visual files
-    const assetsMap = {
-        coffee: 'assets/coffee.png',
-        pourover: 'assets/pourover.png',
-        bites: 'assets/bites.png',
-        fashion: 'assets/fashion.png'
-    };
-
-    menuRows.forEach(row => {
-        row.addEventListener('mouseenter', () => {
-            const previewTag = row.getAttribute('data-preview');
-            const imgSrc = assetsMap[previewTag] || 'assets/coffee.png';
-            
-            previewImg.src = imgSrc;
-            previewContainer.classList.add('active');
-        });
-
-        row.addEventListener('mousemove', (e) => {
-            const xOffset = 25;
-            const yOffset = 25;
-            
-            previewContainer.style.left = `${e.clientX + xOffset}px`;
-            previewContainer.style.top = `${e.clientY + yOffset}px`;
-        });
-
-        row.addEventListener('mouseleave', () => {
-            previewContainer.classList.remove('active');
-        });
-    });
-}
-
-/* 5. Web Audio API Synthesized Soundscape */
+/* 3. Web Audio API Synthesized Soundscape (Mountain Wind & Soft Rain) */
 function initAmbientPlayer() {
     const ambientToggle = document.getElementById('ambientToggle');
     if (!ambientToggle) return;
@@ -150,7 +94,7 @@ function initAmbientPlayer() {
 
             const noiseBuffer = createNoiseBuffer(audioCtx);
 
-            // --- Wind Synthesis ---
+            // --- Wind Synthesis (Lowpass filtered white noise swept by LFO) ---
             windSource = audioCtx.createBufferSource();
             windSource.buffer = noiseBuffer;
             windSource.loop = true;
@@ -161,7 +105,7 @@ function initAmbientPlayer() {
 
             lfo = audioCtx.createOscillator();
             lfo.type = 'sine';
-            lfo.frequency.value = 0.05; // 20s sweep
+            lfo.frequency.value = 0.05; // 20-second sweep cycle
 
             const lfoGain = audioCtx.createGain();
             lfoGain.gain.value = 180;
@@ -177,7 +121,7 @@ function initAmbientPlayer() {
             windSource.connect(windFilter);
             windFilter.connect(windGain);
 
-            // --- Rain Synthesis ---
+            // --- Rain Synthesis (Bandpass filtered white noise) ---
             rainSource = audioCtx.createBufferSource();
             rainSource.buffer = noiseBuffer;
             rainSource.loop = true;
@@ -193,13 +137,12 @@ function initAmbientPlayer() {
             rainSource.connect(rainFilter);
             rainFilter.connect(rainGain);
 
-            // --- Connecting nodes ---
+            // --- Mix & Output ---
             gainNode = audioCtx.createGain();
             gainNode.gain.value = 0.4;
 
             windGain.connect(gainNode);
             rainGain.connect(gainNode);
-            
             gainNode.connect(audioCtx.destination);
 
             windSource.start(0);
@@ -242,7 +185,7 @@ function initAmbientPlayer() {
     });
 }
 
-/* 6. Letter Form Submission with Wax Seal drops */
+/* 4. Letter Form Submission with Wax Seal Animation */
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const successMsg = document.getElementById('successMessage');
@@ -254,7 +197,7 @@ function initContactForm() {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Animate out the form
+        // Fade out form
         contactForm.style.transition = 'opacity 0.4s ease';
         contactForm.style.opacity = '0';
 
@@ -264,7 +207,7 @@ function initContactForm() {
             successMsg.style.opacity = '0';
             successMsg.style.transition = 'opacity 0.4s ease';
             
-            // Reflow
+            // Trigger reflow
             successMsg.offsetHeight;
             successMsg.style.opacity = '1';
 

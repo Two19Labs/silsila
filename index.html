@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Silsila — A quiet space for specialty coffee and curated slow retail in Haldwani, Uttarakhand.">
-    <title>Silsila — Haldwani</title>
+    <meta name="description" content="Silsila — A quiet neighborhood coffee house and curated living space in Haldwani, Uttarakhand.">
+    <title>Silsila — Curated Living &amp; Coffee</title>
     
-    <!-- Premium Google Fonts: Cormorant Garamond & Inter -->
+    <!-- Google Fonts: Cormorant Garamond (Elegant Serif) & Inter (Clean Sans-Serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -18,217 +18,323 @@
     <!-- Scroll Container -->
     <div id="scroll-container">
 
-        <!-- Minimalist Header / Navigation -->
+        <!-- Navigation -->
         <header class="site-header">
             <div class="header-inner">
                 <a href="#" class="logo">Silsila</a>
                 <nav class="main-nav">
-                    <a href="#about" class="nav-link">The Space</a>
-                    <a href="#gallery" class="nav-link">The Gallery</a>
-                    <a href="#menu" class="nav-link">The Brews</a>
-                    <a href="#behind-counter" class="nav-link">Behind the Counter</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="#about" class="nav-link">Our Story</a>
+                    <a href="#space" class="nav-link">The Space</a>
+                    <a href="#curations" class="nav-link">Curated Living</a>
+                    <a href="#jagan" class="nav-link">Behind Silsila</a>
+                    <a href="#contact" class="nav-link">Write Us</a>
+                    <a href="#visit" class="nav-link">Visit Us</a>
                 </nav>
                 <div class="sound-control">
                     <button class="sound-toggle-btn" id="ambientToggle" aria-label="Toggle Soundscape">
                         <span class="sound-status-dot"></span>
                         <span class="sound-toggle-text">Play Mountain Ambient</span>
-                        <!-- Minimal Waveform SVG -->
                         <svg class="waveform" id="waveformSvg" viewBox="0 0 50 20">
-                            <path d="M5,10 L45,10" stroke="rgba(26,26,26,0.3)" stroke-width="2" stroke-linecap="round"></path>
-                            <path class="wave-line" d="M5,10 C15,2 25,18 35,2 C40,10 45,10 45,10" fill="none" stroke="#3e4c41" stroke-width="2" stroke-linecap="round"></path>
+                            <path d="M5,10 L45,10" stroke="rgba(34,34,34,0.2)" stroke-width="2" stroke-linecap="round"></path>
+                            <path class="wave-line" d="M5,10 C15,2 25,18 35,2 C40,10 45,10 45,10" fill="none" stroke="#5B6F5E" stroke-width="2" stroke-linecap="round"></path>
                         </svg>
                     </button>
                 </div>
             </div>
         </header>
 
-        <!-- Parallax Hero Section with Split-Slideshow -->
-        <section class="hero-section">
-            <div class="hero-text-block">
-                <div class="hero-meta reveal-text">EST. HALDWANI, UTTARAKHAND</div>
-                <h1 class="hero-title reveal-text delay-1">Slow coffee.<br>Mountain loom.<br>Silent conversations.</h1>
-                <p class="hero-desc reveal-text delay-2">An atmospheric sanctuary in Haldwani where handwoven textiles and micro-batch pour-overs co-exist in slow rhythm.</p>
-                <div class="hero-actions reveal-text delay-3">
-                    <a href="#about" class="scroll-btn">Enter the Space <span class="arrow">&darr;</span></a>
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-background">
+                <!-- Image Placeholder -->
+                <div class="media-placeholder hero-image" data-label="Cinematic Photograph of Silsila Cafe">
+                    <span class="placeholder-icon">🏔️</span>
                 </div>
             </div>
-            
-            <div class="hero-image-block">
-                <!-- Fading Image Slideshow -->
-                <div class="hero-slideshow">
-                    <img src="assets/exterior.png" alt="Silsila Storefront" class="slide active">
-                    <img src="assets/hero.png" alt="Silsila Coffee Window" class="slide">
-                    <img src="assets/rack_wide.png" alt="Silsila Concept Rack" class="slide">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-meta reveal-text">EST. HALDWANI</div>
+                <h1 class="hero-title reveal-text delay-1">More Than Coffee.</h1>
+                <p class="hero-desc reveal-text delay-2">A neighbourhood coffee house and curated living space where conversations linger, ideas grow, and everyday moments become memorable.</p>
+                <div class="hero-actions reveal-text delay-3">
+                    <a href="#visit" class="btn btn-primary">Visit Silsila</a>
+                    <a href="#about" class="btn btn-secondary">Our Story</a>
                 </div>
-                <div class="hero-slideshow-overlay"></div>
+            </div>
+            <div class="scroll-indicator">
+                <span class="scroll-arrow">↓</span>
+                <span class="scroll-label">Scroll to Breathe</span>
             </div>
         </section>
 
-        <!-- The Space (Editorial Intro) -->
+        <!-- SECTION 2: What is Silsila? -->
         <section class="intro-section" id="about">
             <div class="intro-container">
-                <h2 class="section-title reveal-text">A quiet rhythm.</h2>
                 <div class="intro-grid">
-                    <p class="intro-large-text reveal-text delay-1">We exist in the space between the rush. Silsila is a slow refuge in Haldwani. Every cup is brewed deliberately; every thread on our racks tells a story of mountain hands.</p>
-                    <div class="intro-details reveal-text delay-2">
-                        <p>We source clean, single-origin beans, roasted under gentle flames and brewed in local clay vessels. Our garments are curated in collaboration with small handloom hubs across Kumaon, spun with natural linen, raw wool, and vegetable dyes.</p>
+                    <div class="intro-img-block reveal-img">
+                        <!-- Image Placeholder -->
+                        <div class="media-placeholder rect-image" data-label="Silsila Interior View">
+                            <span class="placeholder-icon">🪑</span>
+                        </div>
+                    </div>
+                    <div class="intro-text-block reveal-text">
+                        <div class="intro-meta">THE ESSENCE</div>
+                        <h2 class="section-title">Silsila began with a simple belief:</h2>
+                        <p class="intro-large-text">That a café can be more than a place to grab coffee.</p>
+                        <p class="intro-desc">It can be a place where strangers become friends, ideas turn into realities, and ordinary days feel a little more meaningful.</p>
+                        <div class="intro-highlights">
+                            <span>Part coffee house.</span>
+                            <span>Part curated living space.</span>
+                            <span class="highlight-main">Entirely built around people.</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Asymmetric Visual Gallery -->
-        <section class="gallery-section" id="gallery">
+        <!-- SECTION 3: The Space (Masonry gallery placeholders) -->
+        <section class="gallery-section" id="space">
             <div class="gallery-container">
-                <div class="gallery-header">
-                    <span class="gallery-meta">THE CURATED JOURNAL</span>
-                    <h2 class="section-title">Visual Notes of Kumaon</h2>
+                <div class="gallery-header text-center">
+                    <span class="gallery-meta">THE GALLERY</span>
+                    <h2 class="section-title">The Space</h2>
+                    <p class="gallery-subtitle">An immersive glimpse into our physical home in Haldwani.</p>
                 </div>
                 
                 <div class="gallery-grid">
                     <div class="gallery-item item-tall reveal-img">
-                        <div class="img-wrap">
-                            <img src="assets/hero.png" alt="Silsila Misty Interior" class="gallery-img">
-                        </div>
-                        <div class="gallery-caption">
-                            <h4>01 / The Morning Light</h4>
-                            <p>Soft light filtered through our glass window overlooking the Haldwani foothills.</p>
+                        <div class="media-placeholder fill-image" data-label="Interior Details &amp; Seating">
+                            <span class="placeholder-icon">🛋️</span>
                         </div>
                     </div>
                     
                     <div class="gallery-item item-short reveal-img">
-                        <div class="img-wrap">
-                            <img src="assets/rack_wide.png" alt="Concept Store Rack Wide" class="gallery-img">
-                        </div>
-                        <div class="gallery-caption">
-                            <h4>02 / The Rack</h4>
-                            <p>Hand-woven linen and cotton garments dyed with forest barks.</p>
+                        <div class="media-placeholder fill-image" data-label="Storefront Exterior view">
+                            <span class="placeholder-icon">🏡</span>
                         </div>
                     </div>
 
                     <div class="gallery-item item-mid reveal-img">
-                        <div class="img-wrap">
-                            <img src="assets/details.png" alt="Indigo Linen details" class="gallery-img">
-                        </div>
-                        <div class="gallery-caption">
-                            <h4>03 / Material Details</h4>
-                            <p>Close-up of vegetable-dyed fibers and slow loom stitches.</p>
+                        <div class="media-placeholder fill-image" data-label="Specialty Coffee Brew Setup">
+                            <span class="placeholder-icon">☕</span>
                         </div>
                     </div>
 
                     <div class="gallery-item item-tall reveal-img">
-                        <div class="img-wrap">
-                            <img src="assets/roaster.png" alt="Micro Roaster Setup" class="gallery-img">
+                        <div class="media-placeholder fill-image" data-label="Curated Home Decor Elements">
+                            <span class="placeholder-icon">🏺</span>
                         </div>
-                        <div class="gallery-caption">
-                            <h4>04 / Micro Batches</h4>
-                            <p>Specialty beans, lightly roasted and packaged in craft paper.</p>
+                    </div>
+
+                    <div class="gallery-item item-short reveal-img">
+                        <div class="media-placeholder fill-image" data-label="The Community in Motion">
+                            <span class="placeholder-icon">👥</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item item-mid reveal-img">
+                        <div class="media-placeholder fill-image" data-label="Slow Living moments">
+                            <span class="placeholder-icon">🍃</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- The Brews & Bites (Interactive Hover-Reveal Menu) -->
-        <section class="menu-section" id="menu">
-            <div class="menu-container">
-                <div class="menu-header">
-                    <span class="menu-meta">THE BREWS &amp; BITES</span>
-                    <h2 class="section-title">The Seasonal Journal</h2>
-                    <p class="menu-desc">Hover over our items to reveal the craft.</p>
+        <!-- SECTION 4: Curated Living -->
+        <section class="curations-section" id="curations">
+            <div class="curations-container">
+                <div class="section-header text-center">
+                    <span class="curations-meta">OUR CURATIONS</span>
+                    <h2 class="section-title">Curated Living</h2>
+                    <p class="curations-subtitle">Silsila is not just a café. We curate objects, tastes, and gatherings designed to enrich daily routines.</p>
                 </div>
-                
-                <div class="menu-layout">
-                    <!-- Column 1: Brews -->
-                    <div class="menu-column">
-                        <h3 class="menu-cat-title">Filter &amp; Espresso</h3>
-                        <div class="menu-list">
-                            <div class="menu-item-row" data-preview="coffee">
-                                <div class="menu-item-line">
-                                    <span class="menu-item-name">The Almora Pour-Over</span>
-                                    <span class="menu-item-price">220</span>
-                                </div>
-                                <p class="menu-item-details">Single-origin beans, slow dripped. Floral notes with a delicate finish.</p>
-                            </div>
-                            <div class="menu-item-row" data-preview="pourover">
-                                <div class="menu-item-line">
-                                    <span class="menu-item-name">Rhododendron Cold Drip</span>
-                                    <span class="menu-item-price">260</span>
-                                </div>
-                                <p class="menu-item-details">12-hour cold-brewed coffee infused with organic Kumaoni Rhododendron nectar.</p>
-                            </div>
-                            <div class="menu-item-row" data-preview="coffee">
-                                <div class="menu-item-line">
-                                    <span class="menu-item-name">Wild Honey Latte</span>
-                                    <span class="menu-item-price">240</span>
-                                </div>
-                                <p class="menu-item-details">Double shot espresso, steamed milk, and raw forest honey from Binsar.</p>
-                            </div>
-                        </div>
+
+                <div class="curations-grid">
+                    <!-- Card 1 -->
+                    <div class="curation-card reveal-text">
+                        <div class="curation-icon">☕</div>
+                        <h3 class="curation-title">Coffee</h3>
+                        <p class="curation-desc">Thoughtfully crafted beverages, light-roast pour-overs, and local single-origins brewed with patience.</p>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="curation-card reveal-text delay-1">
+                        <div class="curation-icon">🏺</div>
+                        <h3 class="curation-title">Home Decor</h3>
+                        <p class="curation-desc">Curated local artifacts, raw clay pottery, and slow textiles that bring warmth and personality into everyday life.</p>
                     </div>
 
-                    <!-- Column 2: Bites & Clothing -->
-                    <div class="menu-column">
-                        <h3 class="menu-cat-title">Sourdough &amp; Loom</h3>
-                        <div class="menu-list">
-                            <div class="menu-item-row" data-preview="bites">
-                                <div class="menu-item-line">
-                                    <span class="menu-item-name">Himalayan Sourdough Melt</span>
-                                    <span class="menu-item-price">280</span>
-                                </div>
-                                <p class="menu-item-details">Country sourdough toast loaded with local greens, aged cheese, and pine nut pesto.</p>
-                            </div>
-                            <div class="menu-item-row" data-preview="bites">
-                                <div class="menu-item-line">
-                                    <span class="menu-item-name">Kumaon Apple Galette</span>
-                                    <span class="menu-item-price">190</span>
-                                </div>
-                                <p class="menu-item-details">Free-form butter pastry filled with spiced regional apples and toasted walnuts.</p>
-                            </div>
-                            <div class="menu-item-row" data-preview="fashion">
-                                <div class="menu-item-line">
-                                    <span class="menu-item-name">The Forest Trail Shirt</span>
-                                    <span class="menu-item-price">3,400</span>
-                                </div>
-                                <p class="menu-item-details">Minimalist Kumaoni handloomed linen dyed using pomegranate skin extracts.</p>
-                            </div>
-                        </div>
+                    <!-- Card 3 -->
+                    <div class="curation-card reveal-text delay-2">
+                        <div class="curation-icon">👥</div>
+                        <h3 class="curation-title">Community</h3>
+                        <p class="curation-desc">A gathering place for shared ideas, silent writing sessions, local artists, and creative connections.</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="curation-card reveal-text delay-3">
+                        <div class="curation-icon">🎨</div>
+                        <h3 class="curation-title">Experiences</h3>
+                        <p class="curation-desc">Collaborations, handloom workshops, sunset acoustic sessions, and memories woven together over time.</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Floating Image Preview Element -->
-            <div class="floating-preview" id="floatingPreview">
-                <img src="assets/coffee.png" alt="Preview Image" id="previewImg" class="preview-img">
             </div>
         </section>
 
-        <!-- Behind the Counter (Toned down Jagan Section) -->
-        <section class="founder-section" id="behind-counter">
+        <!-- SECTION 5: Meet Jagan (Story & Founder Note card) -->
+        <section class="founder-section" id="jagan">
             <div class="founder-container">
-                <div class="founder-layout">
-                    <div class="founder-text-block reveal-text">
-                        <div class="founder-meta">BEHIND THE COUNTER</div>
-                        <blockquote class="founder-quote">
-                            &ldquo;Silsila is simply a reflection of Kumaon’s slow rhythm. I wanted to build a quiet space in Haldwani where you can trace the hands that grew your coffee beans and the weavers who spun your clothes. It’s slow, deliberate, and human.&rdquo;
-                        </blockquote>
-                        <cite class="founder-name">Jagan Kalakkoti, Founder &amp; Barista</cite>
-                    </div>
+                <div class="founder-grid">
                     <div class="founder-img-block reveal-img">
-                        <div class="img-wrap">
-                            <img src="assets/jagan.png" alt="Jagan Kalakkoti brewing coffee" class="founder-img">
+                        <!-- Image Placeholder -->
+                        <div class="media-placeholder portrait-image" data-label="Portrait of Jagan Kalakkoti">
+                            <span class="placeholder-icon">🧑</span>
+                        </div>
+                    </div>
+                    <div class="founder-text-block reveal-text">
+                        <span class="founder-meta">THE HEART BEHIND IT</span>
+                        <h2 class="section-title">The Story Behind Silsila</h2>
+                        <div class="founder-narrative">
+                            <p>Before Silsila became a space, it was an idea.</p>
+                            <p>An idea that a small city deserved beautiful spaces, meaningful experiences, and a community built around creativity and connection.</p>
+                            <p>What started as a dream slowly became a living, breathing place filled with conversations, coffee, and countless stories.</p>
+                            <p>Today, Jagan remains deeply involved in the everyday life of Silsila—from welcoming guests and curating experiences to continuously shaping the culture that makes the space feel like home.</p>
+                        </div>
+
+                        <!-- Handwritten Note Card -->
+                        <div class="founder-note-card reveal-text delay-2">
+                            <div class="note-content">
+                                <p class="note-quote">&ldquo;If you've ever spent an afternoon at Silsila, shared a conversation, worked on a dream, or simply enjoyed a quiet coffee, you've already become a part of our story.&rdquo;</p>
+                                <span class="note-signature">— Jagan</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section (Letter-Style Form with Custom Submit Animation) -->
+        <!-- SECTION 6: A Day At Silsila -->
+        <section class="timeline-section">
+            <div class="timeline-container">
+                <div class="section-header text-center">
+                    <span class="timeline-meta">THE FLOW</span>
+                    <h2 class="section-title">A Day At Silsila</h2>
+                    <p class="timeline-subtitle">The shifting rhythms of our space from dusk till dawn.</p>
+                </div>
+
+                <div class="timeline-flow">
+                    <!-- Morning -->
+                    <div class="timeline-block reveal-text">
+                        <div class="timeline-header">
+                            <span class="time-label">09:00 AM</span>
+                            <h3>Morning</h3>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Fresh coffee and quiet moments. The smell of fresh grinds, sunlight cutting through the glass pane, and space to breathe before the day picks up.</p>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon -->
+                    <div class="timeline-block reveal-text delay-1">
+                        <div class="timeline-header">
+                            <span class="time-label">02:00 PM</span>
+                            <h3>Afternoon</h3>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Work sessions, meetings, and conversations. Co-working desks filled with ideas, soft chatter over warm plates, and new collaborations taking root.</p>
+                        </div>
+                    </div>
+
+                    <!-- Evening -->
+                    <div class="timeline-block reveal-text delay-2">
+                        <div class="timeline-header">
+                            <span class="time-label">06:00 PM</span>
+                            <h3>Evening</h3>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Community, connection, and slow living. Sunset music filterings, storytelling loops, and winding down with shared brews under low lighting.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: Community Stories -->
+        <section class="testimonials-section">
+            <div class="testimonials-container">
+                <div class="section-header text-center">
+                    <span class="testimonials-meta">COMMUNITY VOICES</span>
+                    <h2 class="section-title">Community Stories</h2>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card reveal-text">
+                        <blockquote class="testimonial-quote">
+                            &ldquo;I came for the coffee. I stayed for the atmosphere.&rdquo;
+                        </blockquote>
+                        <cite class="testimonial-author">— Local Writer</cite>
+                    </div>
+
+                    <div class="testimonial-card reveal-text delay-1">
+                        <blockquote class="testimonial-quote">
+                            &ldquo;Haldwani needed a space like this. It feels like an extension of home where you can actually think and connect.&rdquo;
+                        </blockquote>
+                        <cite class="testimonial-author">— Art Curator</cite>
+                    </div>
+
+                    <div class="testimonial-card reveal-text delay-2">
+                        <blockquote class="testimonial-quote">
+                            &ldquo;Every object here feels placed with intention. You can feel Jagan's vision in the air.&rdquo;
+                        </blockquote>
+                        <cite class="testimonial-author">— Regular Guest</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: Instagram Feed -->
+        <section class="instagram-section">
+            <div class="instagram-container">
+                <div class="section-header text-center">
+                    <span class="instagram-meta">FOLLOW OUR JOURNAL</span>
+                    <h2 class="section-title">On Instagram</h2>
+                    <p class="instagram-subtitle"><a href="https://www.instagram.com/silsila.life/" target="_blank" rel="noopener">@silsila.life</a></p>
+                </div>
+
+                <div class="instagram-masonry">
+                    <div class="insta-item reveal-img">
+                        <div class="media-placeholder sq-image" data-label="Insta Photo: Brew Details">
+                            <span class="placeholder-icon">📸</span>
+                        </div>
+                    </div>
+                    <div class="insta-item reveal-img">
+                        <div class="media-placeholder sq-image" data-label="Insta Photo: Handloom Shirts">
+                            <span class="placeholder-icon">📸</span>
+                        </div>
+                    </div>
+                    <div class="insta-item reveal-img">
+                        <div class="media-placeholder sq-image" data-label="Insta Photo: Clay Cup making">
+                            <span class="placeholder-icon">📸</span>
+                        </div>
+                    </div>
+                    <div class="insta-item reveal-img">
+                        <div class="media-placeholder sq-image" data-label="Insta Photo: Reading corner">
+                            <span class="placeholder-icon">📸</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 9: Write to Silsila (Letter Form) -->
         <section class="contact-section" id="contact">
             <div class="contact-container">
-                <h2 class="section-title text-center reveal-text">Write to Silsila</h2>
-                <p class="contact-desc text-center reveal-text">If you wish to host a collaboration, query about our rack, or simply say hello, send us a letter.</p>
+                <div class="section-header text-center">
+                    <span class="contact-meta">CONTACT US</span>
+                    <h2 class="section-title">Write to Silsila</h2>
+                    <p class="contact-desc">If you wish to host a collaboration, query about our space, or simply say hello, send us a letter.</p>
+                </div>
                 
                 <form class="letter-form" id="contactForm" action="#">
                     <div class="letter-body">
@@ -242,7 +348,7 @@
                         <p>
                             I wanted to write to you about:
                         </p>
-                        <textarea id="contactMessage" placeholder="your thoughts or questions..." required></textarea>
+                        <textarea id="contactMessage" placeholder="your thoughts, collaborations, or questions..." required></textarea>
                         
                         <div class="letter-footer">
                             <span>Warmly,</span>
@@ -265,29 +371,72 @@
             </div>
         </section>
 
-        <!-- Footer -->
+        <!-- SECTION 10: Visit Us -->
+        <section class="visit-section" id="visit">
+            <div class="visit-container">
+                <div class="visit-grid">
+                    <div class="visit-info reveal-text">
+                        <span class="visit-meta">VISIT US</span>
+                        <h2 class="section-title">Silsila Coffee House &amp; Home Decor</h2>
+                        <p class="visit-address">Vaishali Colony, near Bhotia Parao, Haldwani, Uttarakhand, India</p>
+                        
+                        <div class="visit-details">
+                            <div class="detail-block">
+                                <h4>Opening Hours</h4>
+                                <p>Tue - Sun: 11:00 AM - 08:30 PM</p>
+                                <p class="muted">Mondays Closed</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4>Contact Information</h4>
+                                <p>hello@silsila.life</p>
+                                <p>+91 70604 44081</p>
+                            </div>
+                        </div>
+
+                        <div class="visit-links">
+                            <a href="https://www.instagram.com/silsila.life/" target="_blank" class="visit-link" rel="noopener">Instagram &rarr;</a>
+                            <a href="https://maps.google.com" target="_blank" class="visit-link" rel="noopener">Google Maps &rarr;</a>
+                        </div>
+                    </div>
+                    
+                    <div class="visit-map reveal-img">
+                        <!-- Map Placeholder -->
+                        <div class="media-placeholder map-image" data-label="Interactive Map Location">
+                            <span class="placeholder-icon">📍</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
         <footer class="site-footer">
             <div class="footer-inner">
                 <div class="footer-block">
                     <h3>Silsila</h3>
-                    <p>Coffee &amp; Slow Retail</p>
+                    <p class="footer-tagline">Curated Living | Coffee</p>
                 </div>
                 <div class="footer-block">
-                    <h4>Haldwani</h4>
+                    <h4>Navigation</h4>
+                    <a href="#about">Our Story</a>
+                    <a href="#space">The Space</a>
+                    <a href="#curations">Curated Living</a>
+                    <a href="#jagan">Behind Silsila</a>
+                    <a href="#contact">Write Us</a>
+                    <a href="#visit">Visit Us</a>
+                </div>
+                <div class="footer-block">
+                    <h4>Location</h4>
                     <p>Vaishali Colony, Haldwani<br>Uttarakhand, India</p>
                 </div>
                 <div class="footer-block">
-                    <h4>Hours</h4>
-                    <p>Tue - Sun: 11:00 AM - 08:30 PM<br>Mondays Closed</p>
-                </div>
-                <div class="footer-block">
-                    <h4>Journal</h4>
-                    <p><a href="https://www.instagram.com/silsila.life/" target="_blank" rel="noopener">@silsila.life</a></p>
-                    <p><a href="https://www.instagram.com/notyourdaaju/" target="_blank" rel="noopener">@notyourdaaju</a></p>
+                    <h4>Contact</h4>
+                    <p>hello@silsila.life</p>
+                    <p>Instagram: <a href="https://www.instagram.com/silsila.life/">@silsila.life</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Silsila. All rights slow-served.</p>
+                <p>&copy; 2026 Silsila. All rights curated.</p>
             </div>
         </footer>
 
