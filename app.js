@@ -1,12 +1,12 @@
 /* --------------------------------------------------
-   SILSILA EDITORIAL SCRIPT
-   Scroll reveals, layout transitions, and letter form interactions.
+   SILSILA INTERACTIVE SCRIPT
+   Interactive booking form, guest counter, and scroll effects.
 -------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
-    initScrollReveal();
-    initContactForm();
+    initGuestCounter();
+    initBookingForm();
 });
 
 /* 1. Header Hide/Show on Scroll */
@@ -19,90 +19,119 @@ function initHeaderScroll() {
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
 
-        if (currentScroll <= 100) {
-            header.classList.remove('hide');
+        // At the very top, remove classes
+        if (currentScroll <= 80) {
+            header.classList.remove('scroll-down', 'scroll-up');
             return;
         }
 
-        if (currentScroll > lastScroll && !header.classList.contains('hide')) {
-            header.classList.add('hide');
-        } else if (currentScroll < lastScroll && header.classList.contains('hide')) {
-            header.classList.remove('hide');
+        // Scrolling down
+        if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+            header.classList.remove('scroll-up');
+            header.classList.add('scroll-down');
+        } 
+        // Scrolling up
+        else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+            header.classList.remove('scroll-down');
+            header.classList.add('scroll-up');
         }
+        
         lastScroll = currentScroll;
     });
 }
 
-/* 2. Scroll Reveal Observers (Intersection Observer) */
-function initScrollReveal() {
-    const revealElements = document.querySelectorAll('.reveal-text, .reveal-img');
+/* 2. Interactive Guest Selector (Counter) */
+let guestCount = 2; // Default guests
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+function initGuestCounter() {
+    const btnDec = document.getElementById('btnGuestDec');
+    const btnInc = document.getElementById('btnGuestInc');
+    const display = document.getElementById('guestCountDisplay');
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal-active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+    if (!btnDec || !btnInc || !display) return;
 
-    revealElements.forEach(el => revealObserver.observe(el));
-}
-
-/* 3. Letter Form Submission with Wax Seal Animation */
-function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    const successMsg = document.getElementById('successMessage');
-    const resetBtn = document.getElementById('resetBtn');
-    const waxSeal = document.getElementById('waxSeal');
-
-    if (!contactForm || !successMsg || !resetBtn || !waxSeal) return;
-
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Fade out form
-        contactForm.style.transition = 'opacity 0.4s ease';
-        contactForm.style.opacity = '0';
-
-        setTimeout(() => {
-            contactForm.style.display = 'none';
-            successMsg.style.display = 'flex';
-            successMsg.style.opacity = '0';
-            successMsg.style.transition = 'opacity 0.4s ease';
-            
-            // Trigger reflow
-            successMsg.offsetHeight;
-            successMsg.style.opacity = '1';
-
-            // Trigger seal drop
-            setTimeout(() => {
-                waxSeal.classList.add('stamped');
-            }, 100);
-        }, 400);
+    btnDec.addEventListener('click', () => {
+        if (guestCount > 1) {
+            guestCount--;
+            display.textContent = guestCount;
+        }
     });
 
-    resetBtn.addEventListener('click', () => {
-        document.getElementById('contactName').value = '';
-        document.getElementById('contactEmail').value = '';
-        document.getElementById('contactMessage').value = '';
+    btnInc.addEventListener('click', () => {
+        if (guestCount < 10) {
+            guestCount++;
+            display.textContent = guestCount;
+        }
+    });
+}
 
+/* 3. Table Booking Form Submission & Success Receipt */
+function initBookingForm() {
+    const bookingForm = document.getElementById('bookingForm');
+    const successMsg = document.getElementById('bookingSuccess');
+    const resetBtn = document.getElementById('btnResetBooking');
+    const waxSeal = document.getElementById('waxSeal');
+    const successDetails = document.getElementById('successDetails');
+
+    if (!bookingForm || !successMsg || !resetBtn || !waxSeal || !successDetails) return;
+
+    bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Get form values
+        const name = document.getElementById('bookingName').value;
+        const dateRaw = document.getElementById('bookingDate').value;
+        const time = document.getElementById('bookingTime').value;
+
+        // Format Date to a cleaner representation (e.g. DD/MM/YYYY)
+        let dateFormatted = dateRaw;
+        if (dateRaw) {
+            const parts = dateRaw.split('-');
+            if (parts.length === 3) {
+                dateFormatted = `${parts[2]}/${parts[1]}/${parts[0]}`;
+            }
+        }
+
+        // Build the receipt html
+        successDetails.innerHTML = `
+            <strong>Reservation Details:</strong><br>
+            Name: <strong>${name}</strong><br>
+            Date: <strong>${dateFormatted}</strong><br>
+            Time: <strong>${time}</strong><br>
+            Guests: <strong>${guestCount} ${guestCount === 1 ? 'Guest' : 'Guests'}</strong>
+        `;
+
+        // Display the success screen
+        successMsg.style.display = 'flex';
+        successMsg.style.opacity = '0';
+        
+        // Trigger reflow
+        successMsg.offsetHeight;
+        successMsg.style.opacity = '1';
+
+        // Animate the Wax Seal drop
+        setTimeout(() => {
+            waxSeal.classList.add('stamped');
+        }, 150);
+    });
+
+    // Reset reservation card to booking form
+    resetBtn.addEventListener('click', () => {
+        // Clear inputs
+        document.getElementById('bookingName').value = '';
+        document.getElementById('bookingDate').value = '';
+        document.getElementById('bookingTime').selectedIndex = 0;
+        
+        // Reset guest count
+        guestCount = 2;
+        document.getElementById('guestCountDisplay').textContent = guestCount;
+
+        // Hide success message
         successMsg.style.opacity = '0';
         waxSeal.classList.remove('stamped');
 
         setTimeout(() => {
             successMsg.style.display = 'none';
-            contactForm.style.display = 'block';
-            contactForm.style.opacity = '0';
-            
-            contactForm.offsetHeight;
-            contactForm.style.opacity = '1';
         }, 400);
     });
 }
