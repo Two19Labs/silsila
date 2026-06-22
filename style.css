@@ -1,26 +1,26 @@
 /* --------------------------------------------------
-   SILSILA REDESIGN - MINIMALIST EDITORIAL STYLE
-   Inspired by premium lifestyle & design magazines.
+   SILSILA REDESIGN - HIGH-END EDITORIAL AESTHETIC
+   Cinematic Parallax, Mouse-Follow Preview, Staggered Grids.
 -------------------------------------------------- */
 
 :root {
-    /* Editorial Color Palette */
-    --color-bg: #f6f3ed;         /* Warm Alabaster Stone */
+    /* Color Palette */
+    --color-bg: #f4f1ea;         /* Alabaster Stone background */
     --color-text: #1a1a1a;       /* Carbon Charcoal */
     --color-muted: #857e74;      /* Soft Taupe */
-    --color-accent: #3e4c41;     /* Muted Sage/Forest */
+    --color-accent: #3e4c41;     /* Muted Sage */
     --color-line: rgba(26, 26, 26, 0.08); /* Minimal divider line */
 
     /* Typography */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-    /* Grid & Padding Scales */
-    --grid-gap: 4rem;
-    --section-pad: 8rem;
+    /* Spacing Scales */
+    --grid-gap: 5rem;
+    --section-pad: 10rem;
 }
 
-/* 1. Reset & Global Aesthetics */
+/* 1. Global Setup & Smooth scroll baseline */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -42,21 +42,16 @@ body {
     overflow-x: hidden;
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 ::-webkit-scrollbar-track {
     background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--color-line);
-}
-::-webkit-scrollbar-thumb:hover {
     background: var(--color-muted);
 }
 
-/* Typography styles */
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 300;
@@ -65,6 +60,7 @@ h1, h2, h3, h4 {
 
 a {
     color: inherit;
+    text-decoration: none;
     transition: opacity 0.3s ease;
 }
 
@@ -72,48 +68,71 @@ a:hover {
     opacity: 0.7;
 }
 
-/* 2. Navigation Header (Minimal & Elegant) */
+/* 2. Navigation Header with waveform controls */
 .site-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 2rem 0;
-    background: rgba(246, 243, 237, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    padding: 2.5rem 0;
+    background: rgba(244, 241, 234, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--color-line);
+    transition: transform 0.4s ease, background 0.4s ease;
+}
+
+.site-header.hide {
+    transform: translateY(-100%);
 }
 
 .header-inner {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 3rem;
+    padding: 0 4rem;
 }
 
 .logo {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 400;
-    text-decoration: none;
     letter-spacing: 1px;
 }
 
 .main-nav {
     display: flex;
-    gap: 3rem;
+    gap: 3.5rem;
 }
 
 .main-nav a {
-    text-decoration: none;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
     font-weight: 400;
     text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .sound-control {
@@ -128,16 +147,10 @@ a:hover {
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 400;
-    letter-spacing: 0.5px;
     color: var(--color-text);
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: opacity 0.3s ease;
-}
-
-.sound-toggle-btn:hover {
-    opacity: 0.7;
+    gap: 12px;
 }
 
 .sound-status-dot {
@@ -150,157 +163,324 @@ a:hover {
 
 .sound-status-dot.playing {
     background-color: var(--color-accent);
-    box-shadow: 0 0 8px var(--color-accent);
-    animation: pulse-dot 1.2s infinite alternate;
+    box-shadow: 0 0 10px var(--color-accent);
+    animation: sound-pulse 1s infinite alternate;
 }
 
-@keyframes pulse-dot {
+@keyframes sound-pulse {
     0% { transform: scale(1); }
-    100% { transform: scale(1.3); }
+    100% { transform: scale(1.4); }
 }
 
-/* 3. Hero Section (Split Asymmetric Layout) */
+.waveform {
+    width: 35px;
+    height: 15px;
+}
+
+.wave-line {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.8s ease;
+}
+
+.sound-status-dot.playing ~ .waveform .wave-line {
+    stroke-dashoffset: 0;
+    animation: wave-anim 1.5s linear infinite;
+}
+
+@keyframes wave-anim {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-20px); }
+}
+
+/* 3. Parallax Hero Section (Cinematic Split/Overlay) */
 .hero-section {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
     align-items: center;
-    padding-top: 6rem;
+    justify-content: flex-start;
+    padding: 0 6rem;
 }
 
-.hero-text-block {
-    padding: 6rem 5rem 6rem 6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+.hero-parallax-bg {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    z-index: -2;
+    will-change: transform;
+}
+
+.hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9) sepia(0.08) contrast(1.02);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, 
+        rgba(244, 241, 234, 0.95) 0%, 
+        rgba(244, 241, 234, 0.75) 45%, 
+        rgba(244, 241, 234, 0.1) 100%
+    );
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 700px;
+    z-index: 10;
 }
 
 .hero-meta {
     font-size: 0.8rem;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     color: var(--color-muted);
     margin-bottom: 2rem;
     font-weight: 400;
 }
 
 .hero-title {
-    font-size: clamp(3rem, 5vw, 4.8rem);
-    line-height: 1.15;
+    font-size: clamp(3.5rem, 6vw, 5.2rem);
+    line-height: 1.1;
     margin-bottom: 2.5rem;
     font-weight: 300;
 }
 
 .hero-desc {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 300;
-    color: #4a4a4a;
+    color: #333;
     line-height: 1.8;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
     max-width: 500px;
 }
 
-.hero-actions {
-    display: flex;
-}
-
-.hero-link {
+.scroll-btn {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
-    text-decoration: none;
-    border-bottom: 1px solid var(--color-text);
-    padding-bottom: 4px;
+    font-size: 1.5rem;
+    border-bottom: 1.5px solid var(--color-text);
+    padding-bottom: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.hero-image-block {
-    height: 100vh;
-    width: 100%;
+.scroll-btn .arrow {
+    display: inline-block;
+    animation: arrow-bounce 1s infinite alternate;
+}
+
+@keyframes arrow-bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(6px); }
+}
+
+/* 4. Text & Image Scroll Reveal CSS rules */
+.reveal-text {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-text.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-img {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-img.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-img .img-wrap {
     overflow: hidden;
-}
-
-.hero-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter: sepia(0.08) contrast(1.02);
 }
 
-/* 4. Intro Section (Breathing Space & Concept) */
+.reveal-img img {
+    transform: scale(1.15);
+    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-img.reveal-active img {
+    transform: scale(1);
+}
+
+/* 5. Intro Section */
 .intro-section {
-    padding: var(--section-pad) 3rem;
+    padding: var(--section-pad) 4rem;
     border-bottom: 1px solid var(--color-line);
 }
 
 .intro-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-}
-
-.section-title {
-    font-size: clamp(2.5rem, 4vw, 3.8rem);
-    margin-bottom: var(--grid-gap);
-    font-weight: 300;
 }
 
 .intro-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     gap: var(--grid-gap);
-    align-items: start;
+    margin-top: 3rem;
 }
 
 .intro-large-text {
     font-family: var(--font-heading);
-    font-size: 2.2rem;
-    line-height: 1.5;
+    font-size: 2.5rem;
+    line-height: 1.45;
     font-weight: 300;
     color: var(--color-accent);
 }
 
 .intro-details {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.8;
+    font-size: 1.15rem;
+    color: #4a4a4a;
+    line-height: 1.9;
+    padding-top: 10px;
 }
 
-/* 5. Menu Section (Clean Two-Column List) */
-.menu-section {
-    padding: var(--section-pad) 3rem;
+/* 6. Asymmetric Staggered Visual Gallery */
+.gallery-section {
+    padding: var(--section-pad) 4rem;
     border-bottom: 1px solid var(--color-line);
 }
 
-.menu-container {
-    max-width: 1100px;
+.gallery-container {
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.menu-header {
+.gallery-header {
     margin-bottom: var(--grid-gap);
+}
+
+.gallery-meta {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-muted);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 6rem;
+}
+
+.gallery-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+}
+
+/* Masonry Height Classes */
+.item-tall { height: 620px; }
+.item-short { height: 420px; margin-top: 8rem; }
+.item-mid { height: 500px; }
+
+.gallery-item .img-wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.05);
+}
+
+.gallery-caption {
+    margin-top: 1.5rem;
+}
+
+.gallery-caption h4 {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+}
+
+.gallery-caption p {
+    font-size: 0.95rem;
+    color: var(--color-muted);
+}
+
+/* Delay reveals */
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
+
+/* 7. The Brews & Retail section (Interactive Hover-Reveal Menu) */
+.menu-section {
+    padding: var(--section-pad) 4rem;
+    border-bottom: 1px solid var(--color-line);
+    position: relative;
+}
+
+.menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .menu-desc {
     font-size: 1.2rem;
     color: var(--color-muted);
-    margin-top: 1rem;
+    margin-top: 8px;
 }
 
-.menu-columns {
+.menu-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--grid-gap);
-    margin-bottom: var(--grid-gap);
+    margin-top: 5rem;
 }
 
 .menu-cat-title {
     font-size: 1.8rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     border-bottom: 1px solid var(--color-line);
     padding-bottom: 10px;
     color: var(--color-accent);
 }
 
-.menu-item {
-    margin-bottom: 2.5rem;
+.menu-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item-row {
+    position: relative;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-line);
+    cursor: pointer;
+}
+
+.menu-item-row:hover {
+    border-bottom-color: var(--color-text);
 }
 
 .menu-item-line {
@@ -308,13 +488,14 @@ a:hover {
     justify-content: space-between;
     align-items: baseline;
     font-family: var(--font-heading);
-    font-size: 1.45rem;
+    font-size: 1.55rem;
     font-weight: 400;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    transition: transform 0.3s ease;
 }
 
-.menu-item-name {
-    color: var(--color-text);
+.menu-item-row:hover .menu-item-line {
+    transform: translateX(10px);
 }
 
 .menu-item-price {
@@ -325,112 +506,61 @@ a:hover {
 .menu-item-details {
     font-size: 0.95rem;
     color: #666;
+    transition: transform 0.3s ease;
 }
 
-.menu-image-row {
-    width: 100%;
-    height: 400px;
+.menu-item-row:hover .menu-item-details {
+    transform: translateX(10px);
+}
+
+/* Floating Follow Image Element */
+.floating-preview {
+    position: fixed;
+    width: 220px;
+    height: 280px;
+    pointer-events: none;
+    z-index: 1000;
     overflow: hidden;
-    margin-top: 5rem;
+    border-radius: 4px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
-.menu-wide-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: sepia(0.05);
+.floating-preview.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
-/* 6. Retail Section (Concept Rack) */
-.retail-section {
-    padding: var(--section-pad) 3rem;
-    border-bottom: 1px solid var(--color-line);
-}
-
-.retail-container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.retail-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: var(--grid-gap);
-    align-items: center;
-}
-
-.retail-img-block {
-    height: 550px;
-    overflow: hidden;
-}
-
-.retail-img {
+.preview-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.retail-text-block {
-    padding-left: 2rem;
-}
-
-.retail-meta {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    color: var(--color-muted);
-    margin-bottom: 1.5rem;
-}
-
-.retail-desc {
-    font-size: 1.25rem;
-    font-weight: 300;
-    color: #444;
-    line-height: 1.8;
-    margin: 2rem 0;
-}
-
-.retail-highlights {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.retail-highlights li {
-    font-size: 1rem;
-    position: relative;
-    padding-left: 20px;
-    color: #555;
-}
-
-.retail-highlights li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
-}
-
-/* 7. Founder Section (Toned Down & Understated) */
+/* 8. Behind the Counter (Founder Section) */
 .founder-section {
-    padding: var(--section-pad) 3rem;
-    background-color: #efede7; /* Slightly darker cream */
+    padding: var(--section-pad) 4rem;
+    background-color: #efede7;
     border-bottom: 1px solid var(--color-line);
 }
 
 .founder-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .founder-layout {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     gap: var(--grid-gap);
     align-items: center;
 }
 
 .founder-meta {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     letter-spacing: 2px;
     color: var(--color-muted);
     margin-bottom: 2rem;
@@ -438,7 +568,7 @@ a:hover {
 
 .founder-quote {
     font-family: var(--font-heading);
-    font-size: 2.3rem;
+    font-size: 2.5rem;
     line-height: 1.45;
     font-style: italic;
     font-weight: 300;
@@ -449,13 +579,12 @@ a:hover {
 .founder-name {
     display: block;
     font-size: 1rem;
-    font-weight: 400;
-    color: var(--color-text);
     font-style: normal;
+    font-weight: 400;
 }
 
 .founder-img-block {
-    height: 420px;
+    height: 480px;
     overflow: hidden;
 }
 
@@ -463,17 +592,17 @@ a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(0.2) sepia(0.1);
+    filter: grayscale(0.2) sepia(0.08);
 }
 
-/* 8. Contact Section (Minimalist Letter Form) */
+/* 9. Contact Section (Minimalist Letter with Wax Seal drop) */
 .contact-section {
-    padding: var(--section-pad) 3rem;
+    padding: var(--section-pad) 4rem;
     position: relative;
 }
 
 .contact-container {
-    max-width: 750px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -486,16 +615,15 @@ a:hover {
 .letter-form {
     background: var(--color-bg);
     border: 1px solid var(--color-line);
-    padding: 4rem;
+    padding: 5rem;
     position: relative;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.01);
 }
 
 .letter-body {
     font-family: var(--font-heading);
-    font-size: 1.7rem;
-    line-height: 2.1;
-    color: var(--color-text);
+    font-size: 1.8rem;
+    line-height: 2.2;
 }
 
 .letter-body p {
@@ -507,15 +635,15 @@ a:hover {
     border-bottom: 1px solid var(--color-muted);
     background: transparent;
     font-family: var(--font-heading);
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     color: var(--color-accent);
-    padding: 0 8px;
     outline: none;
+    padding: 0 8px;
     transition: border-bottom-color 0.3s ease;
 }
 
 .letter-body input::placeholder, .letter-body textarea::placeholder {
-    color: rgba(133, 126, 116, 0.45);
+    color: rgba(133, 126, 116, 0.4);
     font-style: italic;
 }
 
@@ -524,7 +652,7 @@ a:hover {
 }
 
 .letter-body input {
-    height: 40px;
+    height: 45px;
 }
 
 .letter-body textarea {
@@ -539,26 +667,21 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 4rem;
 }
 
 .submit-btn {
     background: transparent;
     border: none;
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    border-bottom: 1px solid var(--color-text);
+    font-size: 1.6rem;
+    border-bottom: 1.5px solid var(--color-text);
     padding-bottom: 2px;
     cursor: pointer;
     color: var(--color-text);
-    transition: opacity 0.3s ease;
 }
 
-.submit-btn:hover {
-    opacity: 0.7;
-}
-
-/* Success Message Overlay */
+/* Success Seal state */
 .success-message {
     display: none;
     position: absolute;
@@ -574,59 +697,81 @@ a:hover {
 
 .success-inner {
     text-align: center;
-    max-width: 450px;
-    padding: 2rem;
+    max-width: 480px;
+    padding: 3rem;
 }
 
-.success-check {
-    font-size: 3rem;
-    color: var(--color-accent);
-    display: block;
-    margin-bottom: 1.5rem;
+.wax-seal {
+    width: 65px;
+    height: 65px;
+    background-color: #8c2323;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f4f1ea;
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    margin: 0 auto 2.5rem auto;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.25);
+    border: 2px dashed rgba(244, 241, 234, 0.4);
+    opacity: 0;
+    transform: scale(3.5);
+    cursor: default;
+}
+
+.wax-seal.stamped {
+    animation: stamp-drop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes stamp-drop {
+    0% { transform: scale(3.5) rotate(15deg); opacity: 0; }
+    80% { transform: scale(0.9) rotate(-5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
 .success-inner h3 {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     margin-bottom: 1rem;
 }
 
 .success-inner p {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     color: var(--color-muted);
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .reset-btn {
     background: transparent;
     border: none;
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     border-bottom: 1px solid var(--color-text);
     padding-bottom: 2px;
     cursor: pointer;
 }
 
-/* 9. Footer Section */
+/* 10. Footer Section */
 .site-footer {
-    background-color: #151515;
+    background-color: #111111;
     color: #e8e4db;
-    padding: 6rem 3rem 3rem 3rem;
+    padding: 8rem 4rem 3rem 4rem;
 }
 
 .footer-inner {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: var(--grid-gap);
-    padding-bottom: 5rem;
-    border-bottom: 1px solid rgba(232, 228, 219, 0.08);
+    padding-bottom: 6rem;
+    border-bottom: 1px solid rgba(232, 228, 219, 0.06);
 }
 
 .footer-block h3 {
     color: #e8e4db;
-    font-size: 2.2rem;
-    margin-bottom: 10px;
+    font-size: 2.4rem;
+    margin-bottom: 15px;
 }
 
 .footer-block h4 {
@@ -641,16 +786,11 @@ a:hover {
 .footer-block p {
     font-size: 0.95rem;
     line-height: 1.8;
-    color: #a8a49c;
-}
-
-.footer-block a {
-    color: inherit;
-    text-decoration: none;
+    color: #a5a198;
 }
 
 .footer-bottom {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 3rem auto 0 auto;
     display: flex;
     justify-content: space-between;
@@ -658,41 +798,38 @@ a:hover {
     color: var(--color-muted);
 }
 
-/* 10. Responsive Design Scales */
+/* 11. Responsive Styles */
 @media (max-width: 1024px) {
     .hero-section {
-        grid-template-columns: 1fr;
-    }
-    .hero-text-block {
-        padding: 6rem 3rem;
-    }
-    .hero-image-block {
-        height: 50vh;
+        padding: 0 3rem;
     }
     .intro-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    .menu-columns {
-        grid-template-columns: 1fr;
         gap: 3rem;
     }
-    .retail-grid {
+    .gallery-grid {
         grid-template-columns: 1fr;
+        gap: 4rem;
     }
-    .retail-text-block {
-        padding-left: 0;
-        margin-top: 2rem;
+    .item-short {
+        margin-top: 0;
+    }
+    .gallery-item {
+        height: auto;
+    }
+    .gallery-item .img-wrap {
+        height: 480px;
+    }
+    .menu-layout {
+        grid-template-columns: 1fr;
+        gap: 4rem;
     }
     .founder-layout {
         grid-template-columns: 1fr;
     }
-    .founder-img-block {
-        margin-top: 2rem;
-    }
     .footer-inner {
         grid-template-columns: 1fr 1fr;
-        gap: 3rem;
+        gap: 4rem;
     }
 }
 
@@ -701,20 +838,24 @@ a:hover {
         display: none;
     }
     .header-inner {
-        padding: 0 1.5rem;
+        padding: 0 2rem;
     }
     .letter-form {
-        padding: 2rem;
+        padding: 3rem;
     }
     .letter-body {
-        font-size: 1.4rem;
-        line-height: 1.9;
+        font-size: 1.5rem;
+        line-height: 2;
     }
     .letter-body input, .letter-body textarea {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     .footer-inner {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 4rem;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
     }
 }
