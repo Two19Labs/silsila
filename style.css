@@ -4,17 +4,17 @@
 -------------------------------------------------- */
 
 :root {
-    /* Brand Specification Colors */
-    --color-bg: #FAF6EB;         /* Soft Amber Ivory */
-    --color-text: #25201C;       /* Warm Charcoal */
-    --color-oak: #D9A73A;        /* Honey Gold Accent (extracted from warm lights) */
-    --color-sage: #3B4E3E;       /* Forest Foliage Green (extracted from plant leaves) */
-    --color-coffee: #463428;     /* Deep Espresso Wood Accent */
+    /* Brand Specification Colors - Revamped to Brick-Reddish Brown Theme */
+    --color-bg: #FAF3EC;         /* Warm Sandstone Ivory */
+    --color-text: #2E221C;       /* Deep Charcoal Espresso */
+    --color-oak: #C86A4B;        /* Rust Terracotta Accent */
+    --color-sage: #A13422;       /* Deep Brick Red Accent */
+    --color-coffee: #543124;     /* Rich Mahogany Wood Accent */
     
     /* Secondary & System Colors */
-    --color-placeholder-bg: #F2ECE0; /* Gray-Beige Card BG */
-    --color-line: rgba(70, 52, 40, 0.08); /* Espresso-tinted lines */
-    --color-muted: #8E8376;      /* Muted Amber Gray */
+    --color-placeholder-bg: #F0E2D5; /* Warm Sandstone Card BG */
+    --color-line: rgba(84, 49, 36, 0.08); /* Terracotta-tinted lines */
+    --color-muted: #9E887C;      /* Muted Sandstone Gray */
 
     /* Typography */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
