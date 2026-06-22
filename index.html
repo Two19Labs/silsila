@@ -30,16 +30,6 @@
                     <a href="#contact" class="nav-link">Write Us</a>
                     <a href="#visit" class="nav-link">Visit Us</a>
                 </nav>
-                <div class="sound-control">
-                    <button class="sound-toggle-btn" id="ambientToggle" aria-label="Toggle Soundscape">
-                        <span class="sound-status-dot"></span>
-                        <span class="sound-toggle-text">Play Mountain Ambient</span>
-                        <svg class="waveform" id="waveformSvg" viewBox="0 0 50 20">
-                            <path d="M5,10 L45,10" stroke="rgba(34,34,34,0.2)" stroke-width="2" stroke-linecap="round"></path>
-                            <path class="wave-line" d="M5,10 C15,2 25,18 35,2 C40,10 45,10 45,10" fill="none" stroke="#5B6F5E" stroke-width="2" stroke-linecap="round"></path>
-                        </svg>
-                    </button>
-                </div>
             </div>
         </header>
 
@@ -70,19 +60,14 @@
                     <path class="mountain-path near-mount-3" d="M -100 525 Q 450 365, 850 545 T 1200 445" stroke="rgba(84, 49, 36, 0.26)" stroke-width="1.35" />
                     <path class="mountain-path near-mount-4" d="M -100 540 Q 450 380, 850 560 T 1200 460" stroke="rgba(84, 49, 36, 0.28)" stroke-width="1.4" />
 
-                    <!-- Water Streams -->
-                    <path class="stream-path stream-main-0" d="M 550 240 C 510 360, 680 520, 620 660 C 560 780, 680 850, 650 950" stroke="rgba(84, 49, 36, 0.26)" stroke-width="1.1" />
-                    <path class="stream-path stream-main-1" d="M 556 240 C 516 360, 686 520, 626 660 C 566 780, 686 850, 656 950" stroke="rgba(84, 49, 36, 0.28)" stroke-width="1.2" />
-                    <path class="stream-path stream-main-2" d="M 562 240 C 522 360, 692 520, 632 660 C 572 780, 692 850, 662 950" stroke="rgba(84, 49, 36, 0.30)" stroke-width="1.3" />
-                    <path class="stream-path stream-main-3" d="M 544 240 C 504 360, 674 520, 614 660 C 554 780, 674 850, 644 950" stroke="rgba(84, 49, 36, 0.24)" stroke-width="1.0" />
+                    <!-- Water Channel (Translucent Blue base paths) -->
+                    <path d="M 550 240 C 510 360, 680 520, 620 660 C 590 720, 660 760, 750 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 550 240 C 510 360, 680 520, 620 660 C 590 720, 660 760, 750 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
 
-                    <path class="stream-path stream-left-0" d="M 620 660 C 560 740, 440 820, 380 950" stroke="rgba(84, 49, 36, 0.26)" stroke-width="1.1" />
-                    <path class="stream-path stream-left-1" d="M 625 660 C 565 740, 445 820, 385 950" stroke="rgba(84, 49, 36, 0.28)" stroke-width="1.2" />
-                    <path class="stream-path stream-left-2" d="M 615 660 C 555 740, 435 820, 375 950" stroke="rgba(84, 49, 36, 0.24)" stroke-width="1.0" />
-
-                    <path class="stream-path stream-right-0" d="M 620 660 C 680 750, 820 830, 900 950" stroke="rgba(84, 49, 36, 0.26)" stroke-width="1.1" />
-                    <path class="stream-path stream-right-1" d="M 625 660 C 685 750, 825 830, 905 950" stroke="rgba(84, 49, 36, 0.28)" stroke-width="1.2" />
-                    <path class="stream-path stream-right-2" d="M 615 660 C 675 750, 815 830, 895 950" stroke="rgba(84, 49, 36, 0.24)" stroke-width="1.0" />
+                    <!-- Water Currents (Animating Shimmer ripples) -->
+                    <path class="river-ripple ripple-fast" d="M 550 240 C 510 360, 680 520, 620 660 C 590 720, 660 760, 750 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 553 240 C 513 360, 683 520, 623 660 C 593 720, 663 760, 753 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 547 240 C 507 360, 677 520, 617 660 C 587 720, 657 760, 747 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
                 </svg>
             </div>
             <div class="hero-content">
@@ -103,6 +88,15 @@
 
         <!-- SECTION 2: What is Silsila? -->
         <section class="intro-section" id="about">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 750 0 C 700 150, 450 300, 400 450 C 350 600, 300 700, 250 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 750 0 C 700 150, 450 300, 400 450 C 350 600, 300 700, 250 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 750 0 C 700 150, 450 300, 400 450 C 350 600, 300 700, 250 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 753 0 C 703 150, 453 300, 403 450 C 353 600, 303 700, 253 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 747 0 C 697 150, 447 300, 397 450 C 347 600, 297 700, 247 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="intro-container">
                 <div class="intro-grid">
                     <div class="intro-img-block reveal-img">
@@ -125,6 +119,15 @@
 
         <!-- SECTION 3: The Space (Masonry gallery) -->
         <section class="gallery-section" id="space">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 250 0 C 320 200, 780 400, 800 600 C 810 700, 810 750, 800 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 250 0 C 320 200, 780 400, 800 600 C 810 700, 810 750, 800 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 250 0 C 320 200, 780 400, 800 600 C 810 700, 810 750, 800 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 253 0 C 323 200, 783 400, 803 600 C 813 700, 813 750, 803 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 247 0 C 317 200, 777 400, 797 600 C 807 700, 807 750, 797 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="gallery-container">
                 <div class="gallery-header text-center">
                     <span class="gallery-meta">THE GALLERY</span>
@@ -162,6 +165,15 @@
 
         <!-- SECTION 4: Curated Living -->
         <section class="curations-section" id="curations">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 800 0 C 780 200, 600 400, 550 600 C 530 680, 510 740, 500 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 800 0 C 780 200, 600 400, 550 600 C 530 680, 510 740, 500 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 800 0 C 780 200, 600 400, 550 600 C 530 680, 510 740, 500 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 803 0 C 783 200, 603 400, 553 600 C 533 680, 513 740, 503 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 797 0 C 777 200, 597 400, 547 600 C 527 680, 507 740, 497 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="curations-container">
                 <div class="section-header text-center">
                     <span class="curations-meta">OUR CURATIONS</span>
@@ -223,6 +235,15 @@
 
         <!-- SECTION 5: Behind Silsila (Meet Jagan) -->
         <section class="founder-section" id="jagan">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 500 0 C 480 200, 320 400, 280 600 C 260 680, 240 740, 200 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 500 0 C 480 200, 320 400, 280 600 C 260 680, 240 740, 200 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 500 0 C 480 200, 320 400, 280 600 C 260 680, 240 740, 200 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 503 0 C 483 200, 323 400, 283 600 C 263 680, 243 740, 203 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 497 0 C 477 200, 317 400, 277 600 C 257 680, 237 740, 197 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="founder-container">
                 <div class="founder-grid">
                     <div class="founder-img-block reveal-img">
@@ -251,6 +272,15 @@
 
         <!-- SECTION 6: A Day At Silsila -->
         <section class="timeline-section">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 200 0 C 250 200, 680 400, 700 600 C 710 680, 730 740, 750 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 200 0 C 250 200, 680 400, 700 600 C 710 680, 730 740, 750 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 200 0 C 250 200, 680 400, 700 600 C 710 680, 730 740, 750 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 203 0 C 253 200, 683 400, 703 600 C 713 680, 733 740, 753 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 197 0 C 247 200, 677 400, 697 600 C 707 680, 727 740, 747 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="timeline-container">
                 <div class="section-header text-center">
                     <span class="timeline-meta">THE FLOW</span>
@@ -297,6 +327,15 @@
 
         <!-- SECTION 7: Community Stories -->
         <section class="testimonials-section">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 750 0 C 700 150, 600 300, 550 450 C 520 600, 510 700, 500 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 750 0 C 700 150, 600 300, 550 450 C 520 600, 510 700, 500 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 750 0 C 700 150, 600 300, 550 450 C 520 600, 510 700, 500 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 753 0 C 703 150, 603 300, 553 450 C 523 600, 513 700, 503 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 747 0 C 697 150, 597 300, 547 450 C 517 600, 507 700, 497 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="testimonials-container">
                 <div class="section-header text-center">
                     <span class="testimonials-meta">COMMUNITY VOICES</span>
@@ -330,6 +369,15 @@
 
         <!-- SECTION 8: Instagram Feed -->
         <section class="instagram-section">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 500 0 C 470 200, 380 400, 350 600 C 330 680, 310 740, 300 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 500 0 C 470 200, 380 400, 350 600 C 330 680, 310 740, 300 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 500 0 C 470 200, 380 400, 350 600 C 330 680, 310 740, 300 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 503 0 C 473 200, 383 400, 353 600 C 333 680, 313 740, 303 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 497 0 C 467 200, 377 400, 347 600 C 327 680, 307 740, 297 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="instagram-container">
                 <div class="section-header text-center">
                     <span class="instagram-meta">FOLLOW OUR JOURNAL</span>
@@ -356,6 +404,15 @@
 
         <!-- SECTION 9: Write to Silsila (Letter Form) -->
         <section class="contact-section" id="contact">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 300 0 C 350 200, 480 400, 500 600 C 510 680, 510 740, 500 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 300 0 C 350 200, 480 400, 500 600 C 510 680, 510 740, 500 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 300 0 C 350 200, 480 400, 500 600 C 510 680, 510 740, 500 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 303 0 C 353 200, 483 400, 503 600 C 513 680, 513 740, 503 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 297 0 C 347 200, 477 400, 497 600 C 507 680, 507 740, 497 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="contact-container">
                 <div class="section-header text-center">
                     <span class="contact-meta">CONTACT US</span>
@@ -400,6 +457,15 @@
 
         <!-- SECTION 10: Visit Us -->
         <section class="visit-section" id="visit">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 500 0 C 480 150, 400 300, 380 450 C 360 600, 420 700, 500 800" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 500 0 C 480 150, 400 300, 380 450 C 360 600, 420 700, 500 800" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 500 0 C 480 150, 400 300, 380 450 C 360 600, 420 700, 500 800" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 503 0 C 483 150, 403 300, 383 450 C 363 600, 423 700, 503 800" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    <path class="river-ripple ripple-mid" d="M 497 0 C 477 150, 397 300, 377 450 C 357 600, 417 700, 497 800" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.0" stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="visit-container">
                 <div class="visit-grid">
                     <div class="visit-info reveal-text">
@@ -478,6 +544,25 @@
 
         <!-- FOOTER -->
         <footer class="site-footer">
+            <div class="section-river-background">
+                <svg class="section-river-svg" viewBox="0 0 1000 400" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 500 0 C 480 80, 500 120, 500 150" stroke="rgba(14, 165, 233, 0.18)" stroke-width="48" stroke-linecap="round" />
+                    <path d="M 500 0 C 480 80, 500 120, 500 150" stroke="rgba(59, 130, 246, 0.14)" stroke-width="32" stroke-linecap="round" />
+                    <path class="river-ripple ripple-fast" d="M 500 0 C 480 80, 500 120, 500 150" stroke="rgba(14, 165, 233, 0.45)" stroke-width="1.8" stroke-linecap="round" />
+                    <path class="river-ripple ripple-slow" d="M 503 0 C 483 80, 503 120, 503 150" stroke="rgba(59, 130, 246, 0.35)" stroke-width="1.2" stroke-linecap="round" />
+                    
+                    <defs>
+                        <linearGradient id="lakeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="rgba(14, 165, 233, 0.22)" />
+                            <stop offset="100%" stop-color="rgba(30, 58, 138, 0.12)" />
+                        </linearGradient>
+                    </defs>
+
+                    <ellipse cx="500" cy="240" rx="320" ry="90" fill="url(#lakeGradient)" />
+                    <ellipse cx="500" cy="240" rx="220" ry="60" stroke="rgba(14, 165, 233, 0.25)" stroke-width="1.5" stroke-dasharray="8 25" />
+                    <ellipse cx="500" cy="240" rx="140" ry="35" stroke="rgba(59, 130, 246, 0.2)" stroke-width="1" stroke-dasharray="12 18" />
+                </svg>
+            </div>
             <div class="footer-inner">
                 <div class="footer-block">
                     <h3>Silsila</h3>

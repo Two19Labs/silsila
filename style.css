@@ -4,17 +4,17 @@
 -------------------------------------------------- */
 
 :root {
-    /* Brand Specification Colors - Revamped to Brick-Reddish Brown Theme */
-    --color-bg: #FAF3EC;         /* Warm Sandstone Ivory */
+    /* Brand Colors - Revamped to Earthy Clay Brown Theme */
+    --color-bg: #EADBC8;         /* Warm wheat-brown clay background */
     --color-text: #2E221C;       /* Deep Charcoal Espresso */
     --color-oak: #C86A4B;        /* Rust Terracotta Accent */
     --color-sage: #A13422;       /* Deep Brick Red Accent */
     --color-coffee: #543124;     /* Rich Mahogany Wood Accent */
     
     /* Secondary & System Colors */
-    --color-placeholder-bg: #F0E2D5; /* Warm Sandstone Card BG */
-    --color-line: rgba(84, 49, 36, 0.08); /* Terracotta-tinted lines */
-    --color-muted: #9E887C;      /* Muted Sandstone Gray */
+    --color-placeholder-bg: #FAF3EC; /* Soft Wheat Sandstone Ivory Card BG */
+    --color-line: rgba(84, 49, 36, 0.12); /* Terracotta-tinted lines */
+    --color-muted: #7E6657;      /* Muted Sandstone Gray */
 
     /* Typography */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
@@ -1337,5 +1337,57 @@ a:hover {
     .footer-inner {
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+}
+
+/* --- WINDING SCROLLING RIVER SYSTEM --- */
+
+/* Force all page sections to support background layers */
+section {
+    position: relative !important;
+    background-color: transparent !important;
+}
+
+/* River background wrapper */
+.section-river-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.section-river-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Wave current animation rules */
+.river-ripple {
+    stroke-dasharray: 18 42;
+    stroke-dashoffset: 0;
+}
+
+.ripple-fast {
+    animation: streamFlow 4.5s linear infinite;
+}
+
+.ripple-mid {
+    animation: streamFlow 7s linear infinite;
+    animation-delay: -1.5s;
+}
+
+.ripple-slow {
+    animation: streamFlow 10s linear infinite;
+    animation-delay: -3s;
+}
+
+@keyframes streamFlow {
+    to {
+        stroke-dashoffset: -120;
     }
 }

@@ -1,12 +1,11 @@
 /* --------------------------------------------------
    SILSILA EDITORIAL SCRIPT
-   Scroll reveals, synthesized soundscapes, and letter form interactions.
+   Scroll reveals, layout transitions, and letter form interactions.
 -------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initScrollReveal();
-    initAmbientPlayer();
     initContactForm();
 });
 
@@ -56,136 +55,7 @@ function initScrollReveal() {
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
-/* 3. Web Audio API Synthesized Soundscape (Mountain Wind & Soft Rain) */
-function initAmbientPlayer() {
-    const ambientToggle = document.getElementById('ambientToggle');
-    if (!ambientToggle) return;
-    
-    const statusDot = ambientToggle.querySelector('.sound-status-dot');
-    const toggleText = ambientToggle.querySelector('.sound-toggle-text');
-    
-    let audioCtx = null;
-    let isPlaying = false;
-    let windSource = null;
-    let rainSource = null;
-    let lfo = null;
-    let gainNode = null;
-
-    // Generate White Noise Buffer
-    function createNoiseBuffer(ctx) {
-        const bufferSize = ctx.sampleRate * 2;
-        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-            output[i] = Math.random() * 2 - 1;
-        }
-        return noiseBuffer;
-    }
-
-    function startSoundscape() {
-        try {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-
-            const noiseBuffer = createNoiseBuffer(audioCtx);
-
-            // --- Wind Synthesis (Lowpass filtered white noise swept by LFO) ---
-            windSource = audioCtx.createBufferSource();
-            windSource.buffer = noiseBuffer;
-            windSource.loop = true;
-
-            const windFilter = audioCtx.createBiquadFilter();
-            windFilter.type = 'lowpass';
-            windFilter.Q.value = 1.2;
-
-            lfo = audioCtx.createOscillator();
-            lfo.type = 'sine';
-            lfo.frequency.value = 0.05; // 20-second sweep cycle
-
-            const lfoGain = audioCtx.createGain();
-            lfoGain.gain.value = 180;
-
-            lfo.connect(lfoGain);
-            lfoGain.connect(windFilter.frequency);
-
-            windFilter.frequency.value = 300;
-
-            const windGain = audioCtx.createGain();
-            windGain.gain.value = 0.2;
-
-            windSource.connect(windFilter);
-            windFilter.connect(windGain);
-
-            // --- Rain Synthesis (Bandpass filtered white noise) ---
-            rainSource = audioCtx.createBufferSource();
-            rainSource.buffer = noiseBuffer;
-            rainSource.loop = true;
-
-            const rainFilter = audioCtx.createBiquadFilter();
-            rainFilter.type = 'bandpass';
-            rainFilter.frequency.value = 950;
-            rainFilter.Q.value = 0.8;
-
-            const rainGain = audioCtx.createGain();
-            rainGain.gain.value = 0.08;
-
-            rainSource.connect(rainFilter);
-            rainFilter.connect(rainGain);
-
-            // --- Mix & Output ---
-            gainNode = audioCtx.createGain();
-            gainNode.gain.value = 0.4;
-
-            windGain.connect(gainNode);
-            rainGain.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            windSource.start(0);
-            rainSource.start(0);
-            lfo.start(0);
-            isPlaying = true;
-
-            statusDot.classList.add('playing');
-            toggleText.textContent = 'Mute Ambient Sound';
-        } catch (e) {
-            console.warn('Audio Synthesis engine failed:', e);
-        }
-    }
-
-    function stopSoundscape() {
-        if (windSource) {
-            try { windSource.stop(); } catch(e){}
-            windSource.disconnect();
-        }
-        if (rainSource) {
-            try { rainSource.stop(); } catch(e){}
-            rainSource.disconnect();
-        }
-        if (lfo) {
-            try { lfo.stop(); } catch(e){}
-            lfo.disconnect();
-        }
-        isPlaying = false;
-        
-        statusDot.classList.remove('playing');
-        toggleText.textContent = 'Play Mountain Ambient';
-    }
-
-    ambientToggle.addEventListener('click', () => {
-        if (!isPlaying) {
-            startSoundscape();
-        } else {
-            stopSoundscape();
-        }
-    });
-}
-
-/* 4. Letter Form Submission with Wax Seal Animation */
+/* 3. Letter Form Submission with Wax Seal Animation */
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const successMsg = document.getElementById('successMessage');
