@@ -5,16 +5,16 @@
 
 :root {
     /* Brand Specification Colors */
-    --color-bg: #F4EFE8;         /* Warm Ivory */
-    --color-text: #222222;       /* Soft Charcoal */
-    --color-oak: #D0A06A;        /* Light Oak Accent */
-    --color-sage: #5B6F5E;       /* Sage Green Accent */
-    --color-coffee: #6B4B36;     /* Coffee Brown */
+    --color-bg: #FAF6EB;         /* Soft Amber Ivory */
+    --color-text: #25201C;       /* Warm Charcoal */
+    --color-oak: #D9A73A;        /* Honey Gold Accent (extracted from warm lights) */
+    --color-sage: #3B4E3E;       /* Forest Foliage Green (extracted from plant leaves) */
+    --color-coffee: #463428;     /* Deep Espresso Wood Accent */
     
     /* Secondary & System Colors */
-    --color-placeholder-bg: #EAE4D9; /* Darker warm ivory for image boxes */
-    --color-line: rgba(34, 34, 34, 0.08); /* Minimal line separators */
-    --color-muted: #8A7E72;               /* Muted Warm Gray */
+    --color-placeholder-bg: #F2ECE0; /* Gray-Beige Card BG */
+    --color-line: rgba(70, 52, 40, 0.08); /* Espresso-tinted lines */
+    --color-muted: #8E8376;      /* Muted Amber Gray */
 
     /* Typography */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
@@ -81,7 +81,7 @@ a:hover {
     width: 100%;
     z-index: 1000;
     padding: 2.2rem 0;
-    background: rgba(244, 239, 232, 0.9);
+    background: rgba(250, 246, 235, 0.9);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--color-line);
@@ -361,9 +361,9 @@ a:hover {
     width: 100%;
     height: 100%;
     background: linear-gradient(to right, 
-        rgba(244, 239, 232, 0.95) 0%, 
-        rgba(244, 239, 232, 0.75) 45%, 
-        rgba(244, 239, 232, 0.1) 100%
+        rgba(250, 246, 235, 0.95) 0%, 
+        rgba(250, 246, 235, 0.75) 45%, 
+        rgba(250, 246, 235, 0.1) 100%
     );
     z-index: -1;
 }
@@ -607,7 +607,7 @@ a:hover {
 }
 
 .curation-card {
-    background: #EAE4D9;
+    background: var(--color-placeholder-bg);
     border: 1px solid var(--color-line);
     border-radius: 8px;
     padding: 3rem 2rem;
@@ -641,7 +641,7 @@ a:hover {
 /* 9. Section 5: Meet Jagan (Founder & Note) */
 .founder-section {
     padding: var(--section-pad) 4rem;
-    background-color: #EAE4D9;
+    background-color: var(--color-placeholder-bg);
     border-bottom: 1px solid var(--color-line);
 }
 
@@ -800,7 +800,7 @@ a:hover {
 /* 11. Section 7: Community Stories */
 .testimonials-section {
     padding: var(--section-pad) 4rem;
-    background-color: #EAE4D9;
+    background-color: var(--color-placeholder-bg);
     border-bottom: 1px solid var(--color-line);
 }
 
@@ -1018,7 +1018,7 @@ a:hover {
     font-size: 2.2rem;
     margin: 0 auto 2.5rem auto;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.25);
-    border: 2px dashed rgba(244, 239, 232, 0.4);
+    border: 2px dashed rgba(250, 246, 235, 0.4);
     opacity: 0;
     transform: scale(3.5);
     cursor: default;
@@ -1138,7 +1138,7 @@ a:hover {
 /* 14. Site Footer */
 .site-footer {
     background-color: #222222;
-    color: #F4EFE8;
+    color: var(--color-bg);
     padding: 6rem 4rem 3rem 4rem;
 }
 
@@ -1149,11 +1149,11 @@ a:hover {
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: var(--grid-gap);
     padding-bottom: 4rem;
-    border-bottom: 1px solid rgba(244, 239, 232, 0.08);
+    border-bottom: 1px solid rgba(250, 246, 235, 0.08);
 }
 
 .footer-block h3 {
-    color: #F4EFE8;
+    color: var(--color-bg);
     font-size: 2.4rem;
     margin-bottom: 10px;
 }
@@ -1174,7 +1174,7 @@ a:hover {
 
 .footer-block a {
     display: block;
-    color: #eae4d9;
+    color: var(--color-placeholder-bg);
     text-decoration: none;
     margin-bottom: 10px;
     font-size: 0.95rem;
@@ -1183,7 +1183,7 @@ a:hover {
 .footer-block p {
     font-size: 0.95rem;
     line-height: 1.8;
-    color: #eae4d9;
+    color: var(--color-placeholder-bg);
 }
 
 .footer-bottom {
