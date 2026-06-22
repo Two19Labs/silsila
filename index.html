@@ -3,338 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Silsila — Concept Store and Specialty Cafe in Haldwani, Uttarakhand. Curated slow fashion, artisanal coffee, and slow living.">
-    <title>Silsila — Cafe & Concept Store</title>
+    <meta name="description" content="Silsila — A quiet space for specialty coffee and curated slow retail in Haldwani, Uttarakhand.">
+    <title>Silsila — Haldwani</title>
     
-    <!-- Google Fonts for Handcrafted Editorial Aesthetic -->
+    <!-- Premium Google Fonts: Cormorant Garamond (Serif) & Inter (Sans-Serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Courier+Prime&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Hand-drawn Paper Grain Overlay -->
-    <div class="paper-overlay"></div>
-    
-    <!-- Ambient Soundscape Controller (Web Audio API Synthesized Mountains) -->
-    <div class="ambient-widget" id="ambientWidget" title="Mute/Unmute Mountain Ambient Sounds">
-        <button class="ambient-toggle" id="ambientToggle">
-            <span class="ambient-icon">🌿</span>
-            <span class="ambient-text">Himalayan Breeze & Rain</span>
-            <div class="sound-wave" id="soundWave">
-                <span></span><span></span><span></span><span></span>
-            </div>
-        </button>
-    </div>
 
-    <!-- Header / Navigation -->
+    <!-- Minimalist Header / Navigation -->
     <header class="site-header">
         <div class="header-inner">
-            <a href="#" class="logo">
-                <span class="logo-text">Silsila</span>
-                <span class="logo-sub">Haldwani</span>
-            </a>
+            <a href="#" class="logo">Silsila</a>
             <nav class="main-nav">
-                <a href="#vibe">The Vibe</a>
-                <a href="#menu-retail">Menu & Lookbook</a>
-                <a href="#jagan">Jagan's Routine</a>
-                <a href="#postcard-section" class="nav-cta">Send a Postcard</a>
+                <a href="#about">The Space</a>
+                <a href="#menu">The Brews</a>
+                <a href="#retail">The Rack</a>
+                <a href="#behind-counter">Behind the Counter</a>
+                <a href="#contact">Contact</a>
             </nav>
+            <div class="sound-control">
+                <button class="sound-toggle-btn" id="ambientToggle" aria-label="Toggle Soundscape">
+                    <span class="sound-status-dot"></span>
+                    <span class="sound-toggle-text">Play Mountain Ambient</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section" id="vibe">
-        <div class="hero-bg-container">
-            <img src="assets/hero.png" alt="Silsila Cafe Interior Uttarakhand" class="hero-bg">
-        </div>
-        <div class="hero-content">
-            <div class="hero-tagline">SPECIALTY COFFEE &amp; SLOW RETAIL</div>
-            <h1 class="hero-title">A continuous flow of mountain conversations.</h1>
-            <p class="hero-desc">Tucked away in Haldwani, Silsila is a living space where artisanal Kumaoni slow-fashion meets hand-poured specialty coffee.</p>
+    <!-- Hero Section (Asymmetric split screen) -->
+    <section class="hero-section">
+        <div class="hero-text-block">
+            <div class="hero-meta">EST. HALDWANI, UTTARAKHAND</div>
+            <h1 class="hero-title">Slow coffee.<br>Mountain loom.<br>Silent conversations.</h1>
+            <p class="hero-desc">Silsila is an understated living space where artisanal Kumaoni slow-fashion exists alongside carefully roasted, hand-poured specialty coffee.</p>
             <div class="hero-actions">
-                <a href="#menu-retail" class="btn btn-primary">Explore Curations</a>
-                <a href="#postcard-section" class="btn btn-secondary">Write a Note</a>
+                <a href="#about" class="hero-link">Enter the Space &rarr;</a>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <span class="scroll-arrow">↓</span>
-            <span class="scroll-label">Scroll to Breathe</span>
+        <div class="hero-image-block">
+            <img src="assets/hero.png" alt="Silsila Cafe Interior" class="hero-img">
         </div>
     </section>
 
-    <!-- Menu & Retail Tabbed Section -->
-    <section class="interactive-showcase" id="menu-retail">
-        <div class="section-header text-center">
-            <h2 class="section-title">The Curated Journal</h2>
-            <p class="section-subtitle">We handpick every coffee bean and spin every fiber of our retail collection with patience.</p>
-            
-            <div class="tab-controls">
-                <button class="tab-btn active" data-tab="cafe-menu">
-                    <span class="tab-num">01</span> The Brews &amp; Bites
-                </button>
-                <button class="tab-btn" data-tab="fashion-retail">
-                    <span class="tab-num">02</span> The Concept Rack
-                </button>
+    <!-- The Space (Editorial Intro) -->
+    <section class="intro-section" id="about">
+        <div class="intro-container">
+            <h2 class="section-title text-center">A rhythm borrowed from the hills.</h2>
+            <div class="intro-grid">
+                <p class="intro-large-text">We believe in deliberate slowness. Silsila is not a quick stop; it is an invitation to pause, watch the mist settle over the foothill forest, and appreciate the craftsmanship behind your cup and your clothes.</p>
+                <div class="intro-details">
+                    <p>Every coffee bean we source is traced directly to sustainable farms, roasted in micro-batches, and brewed with precision. Our retail collection is a curated dialogue with weavers across Uttarakhand, working exclusively with raw, vegetable-dyed fibers.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="showcase-content">
-            <!-- TAB 1: CAFE MENU -->
-            <div class="tab-pane active" id="cafe-menu">
-                <div class="menu-grid">
-                    <div class="menu-image-card">
-                        <img src="assets/coffee.png" alt="Silsila Pour-Over Coffee" class="menu-img">
-                        <div class="menu-image-tag">Local Terracotta Cups</div>
+    <!-- The Brews (Minimalist Menu) -->
+    <section class="menu-section" id="menu">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h2 class="section-title">The Coffee Journal</h2>
+                <p class="menu-desc">Hand-poured filter brews and seasonal signatures served in local terracotta cups.</p>
+            </div>
+            
+            <div class="menu-columns">
+                <!-- Column 1: Filter Coffee -->
+                <div class="menu-column">
+                    <h3 class="menu-cat-title">Specialty Brews</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-line">
+                            <span class="menu-item-name">The Almora Pour-Over</span>
+                            <span class="menu-item-price">220</span>
+                        </div>
+                        <p class="menu-item-details">Light roast single-origin beans, slow dripped. Floral notes with a delicate honey finish.</p>
                     </div>
+                    <div class="menu-item">
+                        <div class="menu-item-line">
+                            <span class="menu-item-name">Rhododendron Cold Drip</span>
+                            <span class="menu-item-price">260</span>
+                        </div>
+                        <p class="menu-item-details">12-hour cold-brewed coffee infused with organic Kumaoni Buransh (Rhododendron) extract.</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-line">
+                            <span class="menu-item-name">Espresso + Wild Honey Latte</span>
+                            <span class="menu-item-price">240</span>
+                        </div>
+                        <p class="menu-item-details">Double shot espresso, steamed milk, and dark forest honey from the Binsar Sanctuary.</p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Bites -->
+                <div class="menu-column">
+                    <h3 class="menu-cat-title">Sourdough &amp; Pastry</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-line">
+                            <span class="menu-item-name">Himalayan Sourdough Melt</span>
+                            <span class="menu-item-price">280</span>
+                        </div>
+                        <p class="menu-item-details">Country sourdough toast loaded with local greens, aged cheese, and pine nut pesto.</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-line">
+                            <span class="menu-item-name">Kumaon Apple Galette</span>
+                            <span class="menu-item-price">190</span>
+                        </div>
+                        <p class="menu-item-details">Free-form butter pastry filled with spiced regional apples and toasted walnuts.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-image-row">
+                <img src="assets/coffee.png" alt="Specialty Coffee Brewing at Silsila" class="menu-wide-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- The Rack (Concept Store / Fashion) -->
+    <section class="retail-section" id="retail">
+        <div class="retail-container">
+            <div class="retail-grid">
+                <div class="retail-img-block">
+                    <img src="assets/fashion.png" alt="Curated Linen Garments" class="retail-img">
+                </div>
+                <div class="retail-text-block">
+                    <div class="retail-meta">THE CONCEPT RACK</div>
+                    <h2 class="section-title">Slow textiles, handwoven.</h2>
+                    <p class="retail-desc">We collaborate with regional weavers in Kumaon to design minimalist silhouettes made from natural fibers. Every piece is colored using plant-based pigments—extracted from pomegranate skin, walnut shells, and marigolds.</p>
+                    <ul class="retail-highlights">
+                        <li>100% Belgian linen and organic Himalayan hemp blends</li>
+                        <li>Hand-loomed merino wraps dyed with local flora</li>
+                        <li>Small batch productions, zero synthetic fibers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Behind the Counter (Toned down Jagan Section) -->
+    <section class="founder-section" id="behind-counter">
+        <div class="founder-container">
+            <div class="founder-layout">
+                <div class="founder-text-block">
+                    <div class="founder-meta">BEHIND THE COUNTER</div>
+                    <blockquote class="founder-quote">
+                        &ldquo;Silsila is simply a reflection of Kumaon’s slow rhythm. I wanted to build a quiet space in Haldwani where you can trace the hands that grew your coffee beans and the weavers who spun your clothes. It’s slow, deliberate, and human.&rdquo;
+                    </blockquote>
+                    <cite class="founder-name">Jagan Kalakkoti, Founder &amp; Barista</cite>
+                </div>
+                <div class="founder-img-block">
+                    <img src="assets/jagan.png" alt="Jagan Kalakkoti brewing pour-over coffee" class="founder-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form (Letter-Style Form) -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title text-center">Write to Silsila</h2>
+            <p class="contact-desc text-center">If you wish to host a collaboration, query about our rack, or simply say hello, send us a letter.</p>
+            
+            <form class="letter-form" id="contactForm" action="#">
+                <div class="letter-body">
+                    <span>Dear Silsila,</span>
+                    <p>
+                        My name is 
+                        <input type="text" id="contactName" placeholder="your name" required> 
+                        and you can reach me at 
+                        <input type="email" id="contactEmail" placeholder="your email address" required>.
+                    </p>
+                    <p>
+                        I wanted to write to you about:
+                    </p>
+                    <textarea id="contactMessage" placeholder="your thoughts or questions..." required></textarea>
                     
-                    <div class="menu-list-container">
-                        <div class="menu-section-header">Specialty Brews</div>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="menu-item-header">
-                                    <span class="menu-item-name">The Almora Pour-Over</span>
-                                    <span class="menu-item-price">₹220</span>
-                                </div>
-                                <p class="menu-item-desc">Single-origin beans, slow dripped. Delicate floral notes with a honey-like finish.</p>
-                            </li>
-                            <li>
-                                <div class="menu-item-header">
-                                    <span class="menu-item-name">Rhododendron Cold Drip</span>
-                                    <span class="menu-item-price">₹260</span>
-                                </div>
-                                <p class="menu-item-desc">12-hour cold-brewed coffee infused with organic Kumaoni Buransh (Rhododendron) extract.</p>
-                            </li>
-                            <li>
-                                <div class="menu-item-header">
-                                    <span class="menu-item-name">Espresso + Wild Honey Latte</span>
-                                    <span class="menu-item-price">₹240</span>
-                                </div>
-                                <p class="menu-item-desc">Rich double shot espresso paired with creamy milk and dark forest honey harvested near Binsar.</p>
-                            </li>
-                        </ul>
-
-                        <div class="menu-section-header margin-top">Slow Food</div>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="menu-item-header">
-                                    <span class="menu-item-name">Himalayan Sourdough Melt</span>
-                                    <span class="menu-item-price">₹280</span>
-                                </div>
-                                <p class="menu-item-desc">Freshly baked rustic sourdough, stuffed with local mountain greens, artisanal cheese, and pine nut pesto.</p>
-                            </li>
-                            <li>
-                                <div class="menu-item-header">
-                                    <span class="menu-item-name">Apple &amp; Walnut Galette</span>
-                                    <span class="menu-item-price">₹190</span>
-                                </div>
-                                <p class="menu-item-desc">Flaky, free-form butter pastry loaded with spiced Kumaon apples and toasted walnuts.</p>
-                            </li>
-                        </ul>
+                    <div class="letter-footer">
+                        <span>Warmly,</span>
+                        <button type="submit" class="submit-btn" id="submitBtn">Send Letter</button>
                     </div>
                 </div>
-            </div>
+            </form>
 
-            <!-- TAB 2: FASHION RACK -->
-            <div class="tab-pane" id="fashion-retail">
-                <div class="retail-grid">
-                    <div class="retail-info-container">
-                        <div class="retail-tag">CURATED RACK</div>
-                        <h3 class="retail-title">Slow Garments for Conscious Souls</h3>
-                        <p class="retail-desc">We collaborate with regional weavers across Kumaon and Garhwal to craft garments that celebrate natural fibers. Linen shirts, organic cotton jackets, and raw merino wool wraps dyed with local plants.</p>
-                        
-                        <div class="retail-features">
-                            <div class="feature-item">
-                                <span class="feature-icon">🌿</span>
-                                <div>
-                                    <strong>Vegetable Dyes</strong>
-                                    <p>Soft hues extracted from pomegranate skins, marigolds, and local walnut shells.</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">🌾</span>
-                                <div>
-                                    <strong>Natural Fibers</strong>
-                                    <p>100% linen, hemp blunts, and hand-spun Himalayan merino wool wraps.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="retail-carousel">
-                        <div class="carousel-item">
-                            <img src="assets/fashion.png" alt="Curated Linen Shirt Silsila" class="carousel-img">
-                            <div class="carousel-meta">
-                                <span class="item-category">Organic Linen</span>
-                                <span class="item-name">The Forest Trail Shirt</span>
-                                <span class="item-price">₹3,400</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Jagan / Timeline Section -->
-    <section class="about-jagan" id="jagan">
-        <div class="about-layout">
-            <div class="jagan-sticky-card">
-                <div class="jagan-img-frame">
-                    <img src="assets/jagan.png" alt="Jagan Kalakkoti Silsila Cafe Owner" class="jagan-img">
-                </div>
-                <div class="jagan-badge">
-                    <span class="jagan-name">Jagan Kalakkoti</span>
-                    <span class="jagan-title">Founder / Barista / Daaju</span>
-                    <div class="jagan-socials">
-                        <a href="https://www.instagram.com/notyourdaaju/" target="_blank" rel="noopener">@notyourdaaju</a>
-                        <span class="social-sep">·</span>
-                        <a href="https://www.instagram.com/silsila.life/" target="_blank" rel="noopener">@silsila.life</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="jagan-story-content">
-                <div class="story-pretitle">THE MAN BEHIND THE COUNTER</div>
-                <h2 class="story-title">Crafting Silsila, one conversation at a time.</h2>
-                <p class="story-text">Silsila is the manifestation of Jagan's passion for slow living and artisanal details. Stepping away from hyper-commercial spaces, Jagan created a refuge where coffee, lifestyle curations, and mountain air exist in unison. If you visit, you'll find him behind the espresso machine pouring shots or curating the fabric racks.</p>
-                
-                <h3 class="timeline-title">A Day in Jagan's Routine</h3>
-                
-                <div class="routine-timeline">
-                    <div class="timeline-step">
-                        <div class="step-time">06:00 AM</div>
-                        <div class="step-details">
-                            <h4>Mountain Mist Run</h4>
-                            <p>Taking a slow walk through the dewy pine forest, taking photos, and breathing in the Kumaon fresh morning breeze.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-time">09:00 AM</div>
-                        <div class="step-details">
-                            <h4>Dialing-in the Espresso</h4>
-                            <p>Tasting and calibrating the espresso machine. Perfecting temperature and pressure parameters for the morning bean profile.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-time">12:30 PM</div>
-                        <div class="step-details">
-                            <h4>Concept Store Styling</h4>
-                            <p>Updating the racks, checking hand-printed clothes from organic weavers, and organizing custom tags.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-time">04:30 PM</div>
-                        <div class="step-details">
-                            <h4>The Slow Pour-Over Chats</h4>
-                            <p>Sitting down with travelers, coffee enthusiasts, and friends. Pouring a fresh batch of single-origin light roasts.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-time">07:30 PM</div>
-                        <div class="step-details">
-                            <h4>Sunset Edits &amp; Design Drops</h4>
-                            <p>Working on lookbook photography edits for the next fashion launch. Listening to ambient sounds and winding down.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Postcard Mailing Section -->
-    <section class="postcard-section" id="postcard-section">
-        <div class="section-header text-center">
-            <h2 class="section-title">Send a Postcard to Silsila</h2>
-            <p class="section-subtitle">No digital forms, just letters. Write a note to Jagan, pick your stamp, and drop it in the mailbox.</p>
-        </div>
-
-        <div class="postcard-wrapper">
-            <!-- Mailbox Slot Graphic -->
-            <div class="mailbox-container" id="mailboxContainer">
-                <div class="mailbox">
-                    <div class="mailbox-slot"></div>
-                    <div class="mailbox-label">SILSILA MAILBOX</div>
-                </div>
-            </div>
-
-            <!-- Interactive Postcard Card -->
-            <div class="postcard-container" id="postcardContainer">
-                <div class="postcard-side postcard-front">
-                    <!-- Left Side: Message -->
-                    <div class="postcard-left">
-                        <textarea class="postcard-message" id="postcardMessage" placeholder="Dear Jagan &amp; Silsila team,..." required></textarea>
-                        <div class="postcard-signature">
-                            <input type="text" class="postcard-name" id="postcardName" placeholder="Your Name" required>
-                            <input type="email" class="postcard-email" id="postcardEmail" placeholder="Your Email" required>
-                        </div>
-                    </div>
-
-                    <!-- Middle Divider -->
-                    <div class="postcard-divider"></div>
-
-                    <!-- Right Side: Stamp & Address -->
-                    <div class="postcard-right">
-                        <!-- Stamp Area -->
-                        <div class="stamp-box-container">
-                            <div class="stamp-slot" id="stampSlot">
-                                <span class="stamp-placeholder">Place Stamp Here</span>
-                            </div>
-                        </div>
-
-                        <!-- Address -->
-                        <div class="postcard-address">
-                            <p class="address-line">To,</p>
-                            <p class="address-line recipient">Jagan Kalakkoti,</p>
-                            <p class="address-line recipient">Silsila Cafe &amp; Concept Store,</p>
-                            <p class="address-line recipient">Vaishali Colony, Haldwani,</p>
-                            <p class="address-line recipient">Uttarakhand, IN</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stamps Selector Rack -->
-            <div class="stamps-rack">
-                <div class="stamps-rack-label">Choose a stamp (Click to place on postcard):</div>
-                <div class="stamps-grid">
-                    <div class="stamp-option" data-stamp="pine" title="Mountain Pine Stamp">
-                        <div class="stamp-design stamp-pine">
-                            <div class="stamp-edges"></div>
-                            <span class="stamp-graphic">🌲</span>
-                            <span class="stamp-val">UK-04</span>
-                        </div>
-                    </div>
-                    <div class="stamp-option" data-stamp="coffee" title="Brewing Coffee Stamp">
-                        <div class="stamp-design stamp-coffee">
-                            <div class="stamp-edges"></div>
-                            <span class="stamp-graphic">☕</span>
-                            <span class="stamp-val">₹25</span>
-                        </div>
-                    </div>
-                    <div class="stamp-option" data-stamp="silsila" title="Silsila Brand Stamp">
-                        <div class="stamp-design stamp-silsila">
-                            <div class="stamp-edges"></div>
-                            <span class="stamp-graphic">SL</span>
-                            <span class="stamp-val">Silsila</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Send Action Button -->
-            <div class="postcard-actions">
-                <button class="btn btn-primary" id="sendPostcardBtn">Drop In Mailbox</button>
-            </div>
-            
-            <!-- Success/Sent Message Overlay -->
-            <div class="postcard-success-msg" id="successMsg">
-                <div class="success-card">
-                    <span class="success-icon">📬</span>
-                    <h3>Postcard Dropped!</h3>
-                    <p>Your handwritten note has slipped into Jagan's mailbox. He will read it over his next brew.</p>
-                    <button class="btn btn-secondary btn-sm" id="resetPostcardBtn">Write Another</button>
+            <div class="success-message" id="successMessage">
+                <div class="success-inner">
+                    <span class="success-check">✓</span>
+                    <h3>Letter Received</h3>
+                    <p>Thank you for writing. We read every note slowly and will get back to you over our next brew.</p>
+                    <button class="reset-btn" id="resetBtn">Write another letter</button>
                 </div>
             </div>
         </div>
@@ -343,27 +204,30 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-inner">
-            <div class="footer-brand">
+            <div class="footer-block">
                 <h3>Silsila</h3>
-                <p>A home for specialty coffee &amp; local craft.</p>
+                <p>Coffee &amp; Slow Retail</p>
             </div>
-            <div class="footer-links">
-                <h4>Connect</h4>
-                <a href="https://www.instagram.com/silsila.life/" target="_blank" rel="noopener">Instagram (@silsila.life)</a>
-                <a href="https://www.instagram.com/notyourdaaju/" target="_blank" rel="noopener">Jagan Kalakkoti (@notyourdaaju)</a>
+            <div class="footer-block">
+                <h4>Haldwani</h4>
+                <p>Vaishali Colony, Haldwani<br>Uttarakhand, India</p>
             </div>
-            <div class="footer-info">
-                <h4>Hours &amp; Location</h4>
-                <p>Vaishali Colony, Haldwani, Uttarakhand</p>
-                <p>Tue - Sun: 11:00 AM - 08:30 PM (Mon Closed)</p>
+            <div class="footer-block">
+                <h4>Hours</h4>
+                <p>Tue - Sun: 11:00 AM - 08:30 PM<br>Mondays Closed</p>
+            </div>
+            <div class="footer-block">
+                <h4>Journal</h4>
+                <p><a href="https://www.instagram.com/silsila.life/" target="_blank" rel="noopener">@silsila.life</a></p>
+                <p><a href="https://www.instagram.com/notyourdaaju/" target="_blank" rel="noopener">@notyourdaaju</a></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Silsila. Made by hand with love in Kumaon.</p>
+            <p>&copy; 2026 Silsila. All rights slow-served.</p>
         </div>
     </footer>
 
-    <!-- Core Script -->
+    <!-- JS script -->
     <script src="app.js"></script>
 </body>
 </html>

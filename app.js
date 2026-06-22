@@ -1,40 +1,20 @@
 /* --------------------------------------------------
-   SILSILA INTERACTIVE SCRIPT
-   Handles tabs, ambient sounds, and postcard drops.
+   SILSILA EDITORIAL CODE
+   Minimalist interaction handlers.
 -------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
-    initTabs();
     initAmbientPlayer();
-    initPostcardInteractive();
-    initScrollAnimations();
+    initContactForm();
 });
 
-/* 1. Tab Switching (Menu & Lookbook) */
-function initTabs() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-
-    tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-tab');
-
-            // Remove active states
-            tabButtons.forEach(b => b.classList.remove('active'));
-            tabPanes.forEach(p => p.classList.remove('active'));
-
-            // Add active states to current
-            btn.classList.add('active');
-            const activePane = document.getElementById(targetTab);
-            if (activePane) activePane.classList.add('active');
-        });
-    });
-}
-
-/* 2. Web Audio API Synthesized Himalayan Soundscape */
+/* 1. Web Audio API Synthesized Himalayan Soundscape */
 function initAmbientPlayer() {
     const ambientToggle = document.getElementById('ambientToggle');
-    const soundWave = document.getElementById('soundWave');
+    if (!ambientToggle) return;
+    
+    const statusDot = ambientToggle.querySelector('.sound-status-dot');
+    const toggleText = ambientToggle.querySelector('.sound-toggle-text');
     
     let audioCtx = null;
     let isPlaying = false;
@@ -55,96 +35,100 @@ function initAmbientPlayer() {
     }
 
     function startSoundscape() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        try {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const noiseBuffer = createNoiseBuffer(audioCtx);
+
+            // --- Wind Synthesis ---
+            windSource = audioCtx.createBufferSource();
+            windSource.buffer = noiseBuffer;
+            windSource.loop = true;
+
+            const windFilter = audioCtx.createBiquadFilter();
+            windFilter.type = 'lowpass';
+            windFilter.Q.value = 1.5;
+
+            // Modulate filter frequency with LFO to simulate wind gust sweeps
+            lfo = audioCtx.createOscillator();
+            lfo.type = 'sine';
+            lfo.frequency.value = 0.04; // extremely slow sweeps (25s cycle)
+
+            const lfoGain = audioCtx.createGain();
+            lfoGain.gain.value = 200; // Sweep range in Hz
+
+            lfo.connect(lfoGain);
+            lfoGain.connect(windFilter.frequency);
+
+            windFilter.frequency.value = 300; // Base cutoff frequency
+
+            const windGain = audioCtx.createGain();
+            windGain.gain.value = 0.22; // Base wind volume
+
+            windSource.connect(windFilter);
+            windFilter.connect(windGain);
+
+            // --- Rain Synthesis ---
+            rainSource = audioCtx.createBufferSource();
+            rainSource.buffer = noiseBuffer;
+            rainSource.loop = true;
+
+            const rainFilter = audioCtx.createBiquadFilter();
+            rainFilter.type = 'bandpass';
+            rainFilter.frequency.value = 950;
+            rainFilter.Q.value = 0.9;
+
+            const rainGain = audioCtx.createGain();
+            rainGain.gain.value = 0.1; // Rain is softer
+
+            rainSource.connect(rainFilter);
+            rainFilter.connect(rainGain);
+
+            // --- Master Connection ---
+            gainNode = audioCtx.createGain();
+            gainNode.gain.value = 0.4;
+
+            windGain.connect(gainNode);
+            rainGain.connect(gainNode);
+            
+            gainNode.connect(audioCtx.destination);
+
+            // Start playing
+            windSource.start(0);
+            rainSource.start(0);
+            lfo.start(0);
+            isPlaying = true;
+
+            statusDot.classList.add('playing');
+            toggleText.textContent = 'Mute Ambient Sound';
+        } catch (e) {
+            console.warn('Audio Synthesis failed to initialize: ', e);
         }
-
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
-        const noiseBuffer = createNoiseBuffer(audioCtx);
-
-        // --- Wind Synthesis ---
-        windSource = audioCtx.createBufferSource();
-        windSource.buffer = noiseBuffer;
-        windSource.loop = true;
-
-        const windFilter = audioCtx.createBiquadFilter();
-        windFilter.type = 'lowpass';
-        windFilter.Q.value = 2.0;
-
-        // Modulate filter frequency with LFO to simulate wind gust sweeps
-        lfo = audioCtx.createOscillator();
-        lfo.type = 'sine';
-        lfo.frequency.value = 0.05; // extremely slow sweeps (20s cycle)
-
-        const lfoGain = audioCtx.createGain();
-        lfoGain.gain.value = 250; // Sweep range in Hz
-
-        lfo.connect(lfoGain);
-        lfoGain.connect(windFilter.frequency);
-
-        windFilter.frequency.value = 350; // Base cutoff frequency
-
-        const windGain = audioCtx.createGain();
-        windGain.gain.value = 0.25; // Base wind volume
-
-        windSource.connect(windFilter);
-        windFilter.connect(windGain);
-
-        // --- Rain Synthesis ---
-        rainSource = audioCtx.createBufferSource();
-        rainSource.buffer = noiseBuffer;
-        rainSource.loop = true;
-
-        const rainFilter = audioCtx.createBiquadFilter();
-        rainFilter.type = 'bandpass';
-        rainFilter.frequency.value = 1000;
-        rainFilter.Q.value = 0.8;
-
-        const rainGain = audioCtx.createGain();
-        rainGain.gain.value = 0.12; // Rain is softer
-
-        rainSource.connect(rainFilter);
-        rainFilter.connect(rainGain);
-
-        // --- Master Connection ---
-        gainNode = audioCtx.createGain();
-        gainNode.gain.value = 0.5;
-
-        windGain.connect(gainNode);
-        rainGain.connect(gainNode);
-        
-        gainNode.connect(audioCtx.destination);
-
-        // Start playing
-        windSource.start(0);
-        rainSource.start(0);
-        lfo.start(0);
-        isPlaying = true;
-
-        soundWave.classList.add('playing');
-        ambientToggle.querySelector('.ambient-icon').textContent = '🏔️';
     }
 
     function stopSoundscape() {
         if (windSource) {
-            windSource.stop();
+            try { windSource.stop(); } catch(e){}
             windSource.disconnect();
         }
         if (rainSource) {
-            rainSource.stop();
+            try { rainSource.stop(); } catch(e){}
             rainSource.disconnect();
         }
         if (lfo) {
-            lfo.stop();
+            try { lfo.stop(); } catch(e){}
             lfo.disconnect();
         }
         isPlaying = false;
         
-        soundWave.classList.remove('playing');
-        ambientToggle.querySelector('.ambient-icon').textContent = '🌿';
+        statusDot.classList.remove('playing');
+        toggleText.textContent = 'Play Mountain Ambient';
     }
 
     ambientToggle.addEventListener('click', () => {
@@ -156,112 +140,50 @@ function initAmbientPlayer() {
     });
 }
 
-/* 3. Postcard Drag & Place, Custom Stamps, Drop Animations */
-function initPostcardInteractive() {
-    const stampOptions = document.querySelectorAll('.stamp-option');
-    const stampSlot = document.getElementById('stampSlot');
-    const sendBtn = document.getElementById('sendPostcardBtn');
-    const postcardSide = document.querySelector('.postcard-side');
-    const successMsg = document.getElementById('successMsg');
-    const resetBtn = document.getElementById('resetPostcardBtn');
-    const mailbox = document.getElementById('mailboxContainer');
+/* 2. Contact Form Transitions */
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMessage');
+    const resetBtn = document.getElementById('resetBtn');
 
-    let selectedStamp = null;
+    if (!contactForm || !successMsg || !resetBtn) return;
 
-    // Stamp Placement (Interactive Postcard Concept)
-    stampOptions.forEach(opt => {
-        opt.addEventListener('click', () => {
-            // Remove previous stamp from slot if any
-            stampSlot.innerHTML = '';
-            
-            // Mark option as selected
-            stampOptions.forEach(o => o.classList.remove('placed'));
-            opt.classList.add('placed');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-            // Clone stamp design and place it inside the slot
-            const stampDesign = opt.querySelector('.stamp-design').cloneNode(true);
-            stampDesign.style.cursor = 'default';
-            stampDesign.style.boxShadow = 'none';
-            stampDesign.style.transform = 'rotate(-3deg)';
-            
-            stampSlot.appendChild(stampDesign);
-            selectedStamp = opt.getAttribute('data-stamp');
-        });
-    });
+        // Animate out the form
+        contactForm.style.transition = 'opacity 0.4s ease';
+        contactForm.style.opacity = '0';
 
-    // Send Form Interaction
-    sendBtn.addEventListener('click', (e) => {
-        const message = document.getElementById('postcardMessage').value.trim();
-        const name = document.getElementById('postcardName').value.trim();
-        const email = document.getElementById('postcardEmail').value.trim();
-
-        if (!message || !name || !email) {
-            alert('Please fill out your message, name, and email before dropping the postcard!');
-            return;
-        }
-
-        if (!selectedStamp) {
-            alert('Please select and place a stamp on your postcard before mailing!');
-            return;
-        }
-
-        // Trigger Send Animation Sequence
-        postcardSide.classList.add('sending');
-
-        // Light up Mailbox
         setTimeout(() => {
-            mailbox.querySelector('.mailbox').classList.add('drag-hover');
-        }, 300);
-
-        // After animation completes (1.5s), display success card
-        setTimeout(() => {
+            contactForm.style.display = 'none';
             successMsg.style.display = 'flex';
-            mailbox.querySelector('.mailbox').classList.remove('drag-hover');
-        }, 1500);
+            successMsg.style.opacity = '0';
+            successMsg.style.transition = 'opacity 0.4s ease';
+            
+            // Force a reflow
+            successMsg.offsetHeight;
+            successMsg.style.opacity = '1';
+        }, 400);
     });
 
-    // Reset Form
     resetBtn.addEventListener('click', () => {
-        document.getElementById('postcardMessage').value = '';
-        document.getElementById('postcardName').value = '';
-        document.getElementById('postcardEmail').value = '';
-        
-        // Reset Stamp
-        stampSlot.innerHTML = '<span class="stamp-placeholder">Place Stamp Here</span>';
-        stampOptions.forEach(o => o.classList.remove('placed'));
-        selectedStamp = null;
+        // Reset form inputs
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactEmail').value = '';
+        document.getElementById('contactMessage').value = '';
 
-        // Reset Styles
-        postcardSide.classList.remove('sending');
-        successMsg.style.display = 'none';
-    });
-}
+        // Animate out success message
+        successMsg.style.opacity = '0';
 
-/* 4. Timeline Scroll Reveal Animations */
-function initScrollAnimations() {
-    const timelineSteps = document.querySelectorAll('.timeline-step');
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-    };
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateX(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    timelineSteps.forEach(step => {
-        // Set initial styling for transitions
-        step.style.opacity = '0';
-        step.style.transform = 'translateY(20px)';
-        step.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
-        revealObserver.observe(step);
+        setTimeout(() => {
+            successMsg.style.display = 'none';
+            contactForm.style.display = 'block';
+            contactForm.style.opacity = '0';
+            
+            // Force a reflow
+            contactForm.offsetHeight;
+            contactForm.style.opacity = '1';
+        }, 400);
     });
 }
