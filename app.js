@@ -1,11 +1,11 @@
 /* --------------------------------------------------
-   SILSILA DYNAMIC INTERACTIONS
-   Parallax scroll, follow-mouse previews, reveal scroll observers.
+   SILSILA EDITORIAL SCRIPT
+   Slideshows, parallax observers, mouse follow previews.
 -------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
-    initHeroParallax();
+    initHeroSlideshow();
     initScrollReveal();
     initMouseFollowPreview();
     initAmbientPlayer();
@@ -20,34 +20,35 @@ function initHeaderScroll() {
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
 
-        if (currentScroll <= 120) {
+        if (currentScroll <= 100) {
             header.classList.remove('hide');
             return;
         }
 
         if (currentScroll > lastScroll && !header.classList.contains('hide')) {
-            // Scrolling down
             header.classList.add('hide');
         } else if (currentScroll < lastScroll && header.classList.contains('hide')) {
-            // Scrolling up
             header.classList.remove('hide');
         }
         lastScroll = currentScroll;
     });
 }
 
-/* 2. Parallax Scroll Effect for Hero */
-function initHeroParallax() {
-    const heroBg = document.querySelector('.hero-parallax-bg');
-    if (!heroBg) return;
+/* 2. Hero Split Fading Slideshow */
+function initHeroSlideshow() {
+    const slides = document.querySelectorAll('.hero-slideshow .slide');
+    if (!slides.length) return;
 
-    window.addEventListener('scroll', () => {
-        const scrollOffset = window.scrollY;
-        // Limit parallax calculations to performance boundary
-        if (scrollOffset < window.innerHeight) {
-            heroBg.style.transform = `translateY(${scrollOffset * 0.35}px)`;
-        }
-    });
+    let currentIndex = 0;
+    const slideInterval = 4000; // 4 seconds
+
+    function showNextSlide() {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextSlide, slideInterval);
 }
 
 /* 3. Scroll Reveal Observers */
@@ -57,14 +58,14 @@ function initScrollReveal() {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15
+        threshold: 0.12
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('reveal-active');
-                observer.unobserve(entry.target); // Trigger once
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -72,46 +73,46 @@ function initScrollReveal() {
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
-/* 4. Mouse-Follow Image Preview (Menu Page Effect) */
+/* 4. Mouse-Follow Image Preview (Menu Row Effect) */
 function initMouseFollowPreview() {
-    const menuItems = document.querySelectorAll('.menu-item-row');
+    const menuRows = document.querySelectorAll('.menu-item-row');
     const previewContainer = document.getElementById('floatingPreview');
     const previewImg = document.getElementById('previewImg');
-    
-    if (!menuItems.length || !previewContainer || !previewImg) return;
 
-    // Map preview data tags to visual assets
+    if (!menuRows.length || !previewContainer || !previewImg) return;
+
+    // Direct mapping of previews to visual files
     const assetsMap = {
         coffee: 'assets/coffee.png',
         pourover: 'assets/pourover.png',
-        bites: 'assets/bites.png'
+        bites: 'assets/bites.png',
+        fashion: 'assets/fashion.png'
     };
 
-    menuItems.forEach(item => {
-        item.addEventListener('mouseenter', (e) => {
-            const previewTag = item.getAttribute('data-preview');
+    menuRows.forEach(row => {
+        row.addEventListener('mouseenter', () => {
+            const previewTag = row.getAttribute('data-preview');
             const imgSrc = assetsMap[previewTag] || 'assets/coffee.png';
             
             previewImg.src = imgSrc;
             previewContainer.classList.add('active');
         });
 
-        item.addEventListener('mousemove', (e) => {
-            // Adjust position offsets to hover comfortably next to the mouse cursor
-            const xOffset = 30;
-            const yOffset = 30;
+        row.addEventListener('mousemove', (e) => {
+            const xOffset = 25;
+            const yOffset = 25;
             
             previewContainer.style.left = `${e.clientX + xOffset}px`;
             previewContainer.style.top = `${e.clientY + yOffset}px`;
         });
 
-        item.addEventListener('mouseleave', () => {
+        row.addEventListener('mouseleave', () => {
             previewContainer.classList.remove('active');
         });
     });
 }
 
-/* 5. Web Audio API Synthesized Ambient Soundscape */
+/* 5. Web Audio API Synthesized Soundscape */
 function initAmbientPlayer() {
     const ambientToggle = document.getElementById('ambientToggle');
     if (!ambientToggle) return;
@@ -128,7 +129,7 @@ function initAmbientPlayer() {
 
     // Generate White Noise Buffer
     function createNoiseBuffer(ctx) {
-        const bufferSize = ctx.sampleRate * 2; // 2 seconds of noise
+        const bufferSize = ctx.sampleRate * 2;
         const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
         const output = noiseBuffer.getChannelData(0);
         for (let i = 0; i < bufferSize; i++) {
@@ -156,20 +157,19 @@ function initAmbientPlayer() {
 
             const windFilter = audioCtx.createBiquadFilter();
             windFilter.type = 'lowpass';
-            windFilter.Q.value = 1.5;
+            windFilter.Q.value = 1.2;
 
-            // Modulate filter frequency with LFO to simulate wind sweeps
             lfo = audioCtx.createOscillator();
             lfo.type = 'sine';
-            lfo.frequency.value = 0.05; // Sweep frequency
+            lfo.frequency.value = 0.05; // 20s sweep
 
             const lfoGain = audioCtx.createGain();
-            lfoGain.gain.value = 220; // Range
+            lfoGain.gain.value = 180;
 
             lfo.connect(lfoGain);
             lfoGain.connect(windFilter.frequency);
 
-            windFilter.frequency.value = 320; // Cutoff baseline
+            windFilter.frequency.value = 300;
 
             const windGain = audioCtx.createGain();
             windGain.gain.value = 0.2;
@@ -184,8 +184,8 @@ function initAmbientPlayer() {
 
             const rainFilter = audioCtx.createBiquadFilter();
             rainFilter.type = 'bandpass';
-            rainFilter.frequency.value = 900;
-            rainFilter.Q.value = 1.0;
+            rainFilter.frequency.value = 950;
+            rainFilter.Q.value = 0.8;
 
             const rainGain = audioCtx.createGain();
             rainGain.gain.value = 0.08;
@@ -193,9 +193,9 @@ function initAmbientPlayer() {
             rainSource.connect(rainFilter);
             rainFilter.connect(rainGain);
 
-            // --- Connections ---
+            // --- Connecting nodes ---
             gainNode = audioCtx.createGain();
-            gainNode.gain.value = 0.5;
+            gainNode.gain.value = 0.4;
 
             windGain.connect(gainNode);
             rainGain.connect(gainNode);
@@ -210,7 +210,7 @@ function initAmbientPlayer() {
             statusDot.classList.add('playing');
             toggleText.textContent = 'Mute Ambient Sound';
         } catch (e) {
-            console.warn('Audio synthesis engine failure:', e);
+            console.warn('Audio Synthesis engine failed:', e);
         }
     }
 
@@ -254,7 +254,7 @@ function initContactForm() {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Animate form card fade
+        // Animate out the form
         contactForm.style.transition = 'opacity 0.4s ease';
         contactForm.style.opacity = '0';
 
@@ -268,20 +268,18 @@ function initContactForm() {
             successMsg.offsetHeight;
             successMsg.style.opacity = '1';
 
-            // Trigger Wax Seal drop animation
+            // Trigger seal drop
             setTimeout(() => {
                 waxSeal.classList.add('stamped');
-            }, 150);
+            }, 100);
         }, 400);
     });
 
     resetBtn.addEventListener('click', () => {
-        // Clear Inputs
         document.getElementById('contactName').value = '';
         document.getElementById('contactEmail').value = '';
         document.getElementById('contactMessage').value = '';
 
-        // Reset elements
         successMsg.style.opacity = '0';
         waxSeal.classList.remove('stamped');
 
@@ -290,7 +288,6 @@ function initContactForm() {
             contactForm.style.display = 'block';
             contactForm.style.opacity = '0';
             
-            // Reflow
             contactForm.offsetHeight;
             contactForm.style.opacity = '1';
         }, 400);

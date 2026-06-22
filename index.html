@@ -15,10 +15,10 @@
 </head>
 <body>
 
-    <!-- Smooth Scrolling Container -->
+    <!-- Scroll Container -->
     <div id="scroll-container">
 
-        <!-- Navigation -->
+        <!-- Minimalist Header / Navigation -->
         <header class="site-header">
             <div class="header-inner">
                 <a href="#" class="logo">Silsila</a>
@@ -43,19 +43,25 @@
             </div>
         </header>
 
-        <!-- Parallax Cinematic Hero -->
-        <section class="hero-section" id="hero">
-            <div class="hero-parallax-bg">
-                <img src="assets/exterior.png" alt="Silsila Haldwani Exterior" class="hero-bg-img">
-            </div>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <div class="hero-meta fade-in-up">EST. HALDWANI, UTTARAKHAND</div>
-                <h1 class="hero-title fade-in-up delay-1">Slow coffee.<br>Mountain loom.<br>Silent rivers.</h1>
-                <p class="hero-desc fade-in-up delay-2">An atmospheric sanctuary where Kumaon handlooms and specialty pour-overs co-exist in perfect silence.</p>
-                <div class="hero-actions fade-in-up delay-3">
+        <!-- Parallax Hero Section with Split-Slideshow -->
+        <section class="hero-section">
+            <div class="hero-text-block">
+                <div class="hero-meta reveal-text">EST. HALDWANI, UTTARAKHAND</div>
+                <h1 class="hero-title reveal-text delay-1">Slow coffee.<br>Mountain loom.<br>Silent conversations.</h1>
+                <p class="hero-desc reveal-text delay-2">An atmospheric sanctuary in Haldwani where handwoven textiles and micro-batch pour-overs co-exist in slow rhythm.</p>
+                <div class="hero-actions reveal-text delay-3">
                     <a href="#about" class="scroll-btn">Enter the Space <span class="arrow">&darr;</span></a>
                 </div>
+            </div>
+            
+            <div class="hero-image-block">
+                <!-- Fading Image Slideshow -->
+                <div class="hero-slideshow">
+                    <img src="assets/exterior.png" alt="Silsila Storefront" class="slide active">
+                    <img src="assets/hero.png" alt="Silsila Coffee Window" class="slide">
+                    <img src="assets/rack_wide.png" alt="Silsila Concept Rack" class="slide">
+                </div>
+                <div class="hero-slideshow-overlay"></div>
             </div>
         </section>
 
@@ -162,9 +168,9 @@
                         </div>
                     </div>
 
-                    <!-- Column 2: Bites -->
+                    <!-- Column 2: Bites & Clothing -->
                     <div class="menu-column">
-                        <h3 class="menu-cat-title">Sourdough &amp; Pastry</h3>
+                        <h3 class="menu-cat-title">Sourdough &amp; Loom</h3>
                         <div class="menu-list">
                             <div class="menu-item-row" data-preview="bites">
                                 <div class="menu-item-line">
@@ -179,6 +185,13 @@
                                     <span class="menu-item-price">190</span>
                                 </div>
                                 <p class="menu-item-details">Free-form butter pastry filled with spiced regional apples and toasted walnuts.</p>
+                            </div>
+                            <div class="menu-item-row" data-preview="fashion">
+                                <div class="menu-item-line">
+                                    <span class="menu-item-name">The Forest Trail Shirt</span>
+                                    <span class="menu-item-price">3,400</span>
+                                </div>
+                                <p class="menu-item-details">Minimalist Kumaoni handloomed linen dyed using pomegranate skin extracts.</p>
                             </div>
                         </div>
                     </div>
