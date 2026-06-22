@@ -4,12 +4,14 @@
 -------------------------------------------------- */
 
 :root {
-    /* Color Palette */
-    --color-bg: #f4f1ea;         /* Alabaster Stone background */
-    --color-text: #1a1a1a;       /* Carbon Charcoal */
-    --color-muted: #857e74;      /* Soft Taupe */
-    --color-accent: #3e4c41;     /* Muted Sage */
-    --color-line: rgba(26, 26, 26, 0.08); /* Minimal divider line */
+    /* Silsila Cafe Physical Color Palette */
+    --color-bg: #f2ede4;         /* Flax/Oatmeal Plaster */
+    --color-text: #1c1c1c;       /* Matte Carbon Charcoal */
+    --color-muted: #8a8276;      /* Soft Taupe Gray */
+    --color-accent: #3d4b3e;     /* Kumaon Forest Olive */
+    --color-terracotta: #a2543b; /* Terracotta Clayware Rust */
+    --color-wood: #5c4638;       /* Reclaimed Walnut Wood */
+    --color-line: rgba(28, 28, 28, 0.08); /* Minimal divider line */
 
     /* Typography */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
@@ -19,6 +21,7 @@
     --grid-gap: 5rem;
     --section-pad: 10rem;
 }
+
 
 /* 1. Global Setup & Smooth scroll baseline */
 * {
@@ -76,7 +79,7 @@ a:hover {
     width: 100%;
     z-index: 1000;
     padding: 2.5rem 0;
-    background: rgba(244, 241, 234, 0.85);
+    background: rgba(242, 237, 228, 0.85);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--color-line);
@@ -295,9 +298,9 @@ a:hover {
     width: 100%;
     height: 100%;
     background: linear-gradient(to right, 
-        rgba(244, 241, 234, 1) 0%, 
-        rgba(244, 241, 234, 0.45) 45%, 
-        rgba(244, 241, 234, 0) 100%
+        rgba(242, 237, 228, 1) 0%, 
+        rgba(242, 237, 228, 0.45) 45%, 
+        rgba(242, 237, 228, 0) 100%
     );
     z-index: 3;
     pointer-events: none;
@@ -519,8 +522,8 @@ a:hover {
 }
 
 .menu-item-price {
-    font-weight: 300;
-    color: var(--color-muted);
+    font-weight: 400;
+    color: var(--color-terracotta);
 }
 
 .menu-item-details {
@@ -563,7 +566,7 @@ a:hover {
 /* 8. Behind the Counter (Founder Section) */
 .founder-section {
     padding: var(--section-pad) 4rem;
-    background-color: #efede7;
+    background-color: #e5dfd6;
     border-bottom: 1px solid var(--color-line);
 }
 
@@ -724,17 +727,17 @@ a:hover {
 .wax-seal {
     width: 65px;
     height: 65px;
-    background-color: #8c2323;
+    background-color: var(--color-terracotta);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f4f1ea;
+    color: var(--color-bg);
     font-family: var(--font-heading);
     font-size: 2.2rem;
     margin: 0 auto 2.5rem auto;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.25);
-    border: 2px dashed rgba(244, 241, 234, 0.4);
+    border: 2px dashed rgba(242, 237, 228, 0.4);
     opacity: 0;
     transform: scale(3.5);
     cursor: default;
@@ -832,9 +835,9 @@ a:hover {
     }
     .hero-slideshow-overlay {
         background: linear-gradient(to bottom, 
-            rgba(244, 241, 234, 1) 0%, 
-            rgba(244, 241, 234, 0.45) 45%, 
-            rgba(244, 241, 234, 0) 100%
+            rgba(242, 237, 228, 1) 0%, 
+            rgba(242, 237, 228, 0.45) 45%, 
+            rgba(242, 237, 228, 0) 100%
         );
     }
     .intro-grid {
