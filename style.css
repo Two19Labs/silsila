@@ -1219,6 +1219,46 @@ a:hover {
     opacity: 0.85;
 }
 
+/* Mute Button */
+.video-mute-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(31, 24, 19, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #f4efeb; /* matches var(--color-text-light) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 4;
+    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.video-play-overlay.hidden ~ .video-mute-btn {
+    opacity: 0.8;
+    pointer-events: auto;
+}
+
+.video-play-overlay.hidden ~ .video-mute-btn:hover {
+    opacity: 1;
+    background-color: var(--color-accent);
+    transform: scale(1.08);
+}
+
+.video-mute-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
 /* Video Badge */
 .video-badge {
     position: absolute;

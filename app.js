@@ -272,7 +272,11 @@ function initMenuCarousels() {
         function startAutoPlay() {
             stopAutoPlay();
             slideInterval = setInterval(() => {
-                showCard(currentIndex + 1);
+                if (carouselId === 'beverageCarousel') {
+                    showCard(currentIndex - 1);
+                } else {
+                    showCard(currentIndex + 1);
+                }
             }, intervalTime);
         }
         
@@ -513,5 +517,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 overlay.classList.remove('hidden');
             }
         });
+
+        // Add mute button functionality
+        const muteBtn = document.getElementById('videoMuteBtn');
+        if (muteBtn) {
+            const muteIconMuted = muteBtn.querySelector('.mute-icon-muted');
+            const muteIconUnmuted = muteBtn.querySelector('.mute-icon-unmuted');
+
+            muteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                video.muted = !video.muted;
+                if (video.muted) {
+                    muteIconMuted.style.display = 'block';
+                    muteIconUnmuted.style.display = 'none';
+                    muteBtn.classList.add('muted');
+                } else {
+                    muteIconMuted.style.display = 'none';
+                    muteIconUnmuted.style.display = 'block';
+                    muteBtn.classList.remove('muted');
+                }
+            });
+        }
     }
 });
