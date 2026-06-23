@@ -11,7 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollProgressBar();
     initScrollReveal();
     initParallaxScroll();
+    initMobileMenu();
 });
+
+/* 0. Mobile Menu Toggle */
+function initMobileMenu() {
+    const toggle = document.getElementById('mobileMenuToggle');
+    const overlay = document.getElementById('mobileNavOverlay');
+    if (!toggle || !overlay) return;
+
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close menu when a link is clicked
+    overlay.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            toggle.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+}
 
 /* 1. Header Hide/Show on Scroll */
 function initHeaderScroll() {
