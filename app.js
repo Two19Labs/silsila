@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initGuestCounter();
     initBookingForm();
     initMenuCarousels();
+    initScrollProgressBar();
+    initScrollReveal();
+    initParallaxScroll();
 });
 
 /* 1. Header Hide/Show on Scroll */
@@ -286,3 +289,118 @@ function initMenuCarousels() {
         startAutoPlay();
     });
 }
+
+/* 5. Scroll Progress Bar */
+function initScrollProgressBar() {
+    const progressBar = document.querySelector('.scroll-progress');
+    if (!progressBar) return;
+
+    window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalHeight <= 0) return;
+        const progress = (window.scrollY / totalHeight) * 100;
+        progressBar.style.width = `${progress}%`;
+    }, { passive: true });
+}
+
+/* 6. Scroll Reveal Animations (Intersection Observer) */
+function initScrollReveal() {
+    const revealElements = document.querySelectorAll(
+        '.reveal-fade, .reveal-slide-up, .reveal-slide-left, .reveal-slide-right, .reveal-scale-up'
+    );
+    const staggerContainers = document.querySelectorAll('.stagger-reveal');
+
+    if (revealElements.length === 0 && staggerContainers.length === 0) return;
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Staggered reveal for containers (e.g. Gallery, Info Blocks)
+    staggerContainers.forEach(container => {
+        const items = container.querySelectorAll('.stagger-item');
+        if (items.length === 0) return;
+
+        const containerObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    items.forEach((item, idx) => {
+                        setTimeout(() => {
+                            item.classList.add('active');
+                        }, idx * 100);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        containerObserver.observe(container);
+    });
+
+    // Animate above-the-fold elements immediately after DOM is ready
+    setTimeout(() => {
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+            const aboveFold = heroSection.querySelectorAll(
+                '.reveal-fade, .reveal-slide-up, .reveal-slide-left, .reveal-slide-right, .reveal-scale-up'
+            );
+            aboveFold.forEach(el => {
+                el.classList.add('active');
+                revealObserver.unobserve(el);
+            });
+        }
+    }, 100);
+}
+
+/* 7. Parallax Scrolling Effect */
+function initParallaxScroll() {
+    // Only apply parallax on desktop/larger viewports to keep performance pristine
+    if (window.innerWidth < 768) return;
+
+    const heroImg = document.querySelector('.hero-arch-frame img');
+    const storyBack = document.querySelector('.frame-back');
+    const storyFront = document.querySelector('.frame-front');
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+
+        // Hero image scroll parallax (slower scrolling up inside arched frame)
+        if (heroImg && scrolled < window.innerHeight) {
+            heroImg.style.transform = `translateY(${scrolled * 0.08}px) scale(1.05)`;
+        }
+
+        // Story overlapping frames parallax
+        const storySection = document.getElementById('story');
+        if (storySection) {
+            const rect = storySection.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+
+            if (rect.top < viewHeight && rect.bottom > 0) {
+                // Percentage of section entry
+                const entryPercent = (viewHeight - rect.top) / (viewHeight + rect.height);
+                const shift = (entryPercent - 0.5) * 80; // center is 0 shift, range -40px to +40px
+
+                if (storyBack) {
+                    storyBack.style.transform = `translateY(${shift * -0.2}px)`;
+                }
+                if (storyFront) {
+                    storyFront.style.transform = `translateY(${shift * -0.6}px)`;
+                }
+            }
+        }
+    }, { passive: true });
+}
+
