@@ -147,23 +147,18 @@ function initMenuCarousels() {
         
         const track = carousel.querySelector('.carousel-track');
         const cards = Array.from(carousel.querySelectorAll('.carousel-card'));
-        const controls = document.querySelector(`.carousel-controls[data-carousel="${carouselId}"]`);
-        if (!controls) return;
+        const dots = Array.from(carousel.querySelectorAll('.dot'));
+        const prevBtn = carousel.querySelector('.prev-btn');
+        const nextBtn = carousel.querySelector('.next-btn');
         
-        const dots = Array.from(controls.querySelectorAll('.dot'));
-        const prevBtn = controls.querySelector('.prev-btn');
-        const nextBtn = controls.querySelector('.next-btn');
+        if (cards.length === 0) return;
         
         let currentIndex = 0;
         let slideInterval;
         const intervalTime = 5000; // 5 seconds
         
-        // Show specific card
+        // Show specific card and assign stack classes
         function showCard(index) {
-            // Remove active classes
-            cards.forEach(card => card.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
             // Handle wrap-around index
             if (index >= cards.length) {
                 currentIndex = 0;
@@ -173,9 +168,25 @@ function initMenuCarousels() {
                 currentIndex = index;
             }
             
-            // Set active class
-            cards[currentIndex].classList.add('active');
-            dots[currentIndex].classList.add('active');
+            const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+            const nextIndex = (currentIndex + 1) % cards.length;
+            
+            // Assign active, prev, and next classes
+            cards.forEach((card, idx) => {
+                card.classList.remove('active', 'prev', 'next');
+                if (idx === currentIndex) {
+                    card.classList.add('active');
+                } else if (idx === prevIndex) {
+                    card.classList.add('prev');
+                } else if (idx === nextIndex) {
+                    card.classList.add('next');
+                }
+            });
+            
+            // Toggle active state for pagination dots
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentIndex);
+            });
         }
         
         // Start auto play
@@ -193,30 +204,47 @@ function initMenuCarousels() {
             }
         }
         
-        // Manual control handlers
+        // Manual navigation button handlers
         if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 showCard(currentIndex + 1);
                 startAutoPlay(); // Reset timer
             });
         }
         
         if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 showCard(currentIndex - 1);
                 startAutoPlay(); // Reset timer
             });
         }
         
+        // Dot indicator click handlers
         dots.forEach(dot => {
-            dot.addEventListener('click', () => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const targetIndex = parseInt(dot.getAttribute('data-slide'));
                 showCard(targetIndex);
                 startAutoPlay(); // Reset timer
             });
         });
         
-        // Pause on hover
+        // Click directly on peeking cards to transition
+        cards.forEach((card, idx) => {
+            card.addEventListener('click', (e) => {
+                if (card.classList.contains('prev')) {
+                    showCard(currentIndex - 1);
+                    startAutoPlay();
+                } else if (card.classList.contains('next')) {
+                    showCard(currentIndex + 1);
+                    startAutoPlay();
+                }
+            });
+        });
+        
+        // Pause auto play on hover over active area
         carousel.addEventListener('mouseenter', () => {
             stopAutoPlay();
         });
@@ -241,21 +269,20 @@ function initMenuCarousels() {
         }, { passive: true });
         
         function handleSwipe() {
-            const threshold = 50; // min swipe distance in px
+            const threshold = 40; // swipe threshold in px
             const diff = touchStartX - touchEndX;
             
             if (Math.abs(diff) > threshold) {
                 if (diff > 0) {
-                    // Swiped left, show next card
                     showCard(currentIndex + 1);
                 } else {
-                    // Swiped right, show prev card
                     showCard(currentIndex - 1);
                 }
             }
         }
         
-        // Initialize
+        // Initialize carousel classes and auto-swiping
+        showCard(0);
         startAutoPlay();
     });
 }
