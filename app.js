@@ -117,6 +117,17 @@ function initBookingForm() {
         setTimeout(() => {
             waxSeal.classList.add('stamped');
         }, 150);
+
+        // Open WhatsApp chat in a new tab with pre-filled message
+        const whatsappNumber = '918377893379';
+        const messageText = `Can I get a reservation for:
+- Name: ${name}
+- Date: ${dateFormatted}
+- Time: ${time}
+- Guests: ${guestCount} ${guestCount === 1 ? 'Guest' : 'Guests'}`;
+        
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
+        window.open(whatsappUrl, '_blank');
     });
 
     // Reset reservation card to booking form
