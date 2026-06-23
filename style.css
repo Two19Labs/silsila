@@ -231,20 +231,11 @@ a:hover {
     width: 100%;
     z-index: 1000;
     padding: 1.5rem 0;
-    background: rgba(var(--color-bg-light-rgb), 0.85);
+    background: rgba(var(--color-bg-light-rgb), 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(var(--color-border-rgb), 0.6);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.site-header.scroll-down {
-    transform: translateY(-100%);
-}
-
-.site-header.scroll-up {
-    transform: translateY(0);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
 }
 
 /* Scrolled Floating Cylindrical Nav */
@@ -255,21 +246,12 @@ a:hover {
     transform: translateX(-50%) translateY(20px);
     border-radius: 100px;
     padding: 0.8rem 0;
-    box-shadow: 0 10px 40px rgba(31, 24, 19, 0.08);
-}
-
-.site-header.scrolled.scroll-down {
-    transform: translateX(-50%) translateY(-120%);
-}
-
-.site-header.scrolled.scroll-up {
-    transform: translateX(-50%) translateY(20px);
-    box-shadow: 0 10px 40px rgba(31, 24, 19, 0.12);
+    box-shadow: 0 10px 40px rgba(31, 24, 19, 0.1);
 }
 
 /* Scrolled Light Theme (Default, over light sections) */
 .site-header.scrolled.header-light {
-    background: rgba(250, 242, 236, 0.85);
+    background: rgba(250, 242, 236, 0.65);
     border: 1px solid rgba(var(--color-border-rgb), 0.6);
 }
 
@@ -288,7 +270,7 @@ a:hover {
 
 /* Scrolled Dark Theme (Over dark sections like video or footer) */
 .site-header.scrolled.header-dark {
-    background: rgba(31, 24, 19, 0.85);
+    background: rgba(31, 24, 19, 0.65);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }

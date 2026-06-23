@@ -72,8 +72,6 @@ function initHeaderScroll() {
     const header = document.querySelector('.site-header');
     if (!header) return;
     
-    let lastScroll = 0;
-
     const handleScroll = () => {
         const currentScroll = window.scrollY;
 
@@ -83,19 +81,7 @@ function initHeaderScroll() {
         } else {
             header.classList.remove('scrolled');
         }
-
-        // Smart hide/show behavior on scroll
-        if (currentScroll <= 80) {
-            header.classList.remove('scroll-down', 'scroll-up');
-        } else if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
-            header.classList.remove('scroll-up');
-            header.classList.add('scroll-down');
-        } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
-            header.classList.remove('scroll-down');
-            header.classList.add('scroll-up');
-        }
         
-        lastScroll = currentScroll;
         updateHeaderTheme();
     };
 
