@@ -120,11 +120,11 @@ function initBookingForm() {
 
         // Open WhatsApp chat in a new tab with pre-filled message
         const whatsappNumber = '918377893379';
-        const messageText = `Hi Jagan! Could I get a reservation for:
-- Name: ${name}
-- Date: ${dateFormatted}
-- Time: ${time}
-- Guests: ${guestCount} ${guestCount === 1 ? 'Guest' : 'Guests'}?`;
+        const messageText = `Hi Jagan! Could I get a reservation for:\n\n` +
+            `• Name: ${name}\n` +
+            `• Date: ${dateFormatted}\n` +
+            `• Time: ${time}\n` +
+            `• Guests: ${guestCount} ${guestCount === 1 ? 'Guest' : 'Guests'}`;
         
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
         window.open(whatsappUrl, '_blank');
