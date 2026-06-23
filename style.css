@@ -227,22 +227,34 @@ a:hover {
 .site-header {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
     width: 100%;
+    max-width: 100%;
     z-index: 1000;
     padding: 1.5rem 0;
     background: rgba(var(--color-bg-light-rgb), 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    border: 1px solid transparent;
     border-bottom: 1px solid rgba(var(--color-border-rgb), 0.6);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: 
+        width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: width, transform, padding, background-color, border-color, border-radius, box-shadow;
 }
 
 /* Scrolled Floating Cylindrical Nav */
 .site-header.scrolled {
     width: calc(100% - 4rem);
     max-width: 1100px;
-    left: 50%;
     transform: translateX(-50%) translateY(20px);
     border-radius: 100px;
     padding: 0.8rem 0;
@@ -252,7 +264,7 @@ a:hover {
 /* Scrolled Light Theme (Default, over light sections) */
 .site-header.scrolled.header-light {
     background: rgba(250, 242, 236, 0.65);
-    border: 1px solid rgba(var(--color-border-rgb), 0.6);
+    border-color: rgba(var(--color-border-rgb), 0.6);
 }
 
 .site-header.scrolled.header-light .logo,
@@ -271,7 +283,7 @@ a:hover {
 /* Scrolled Dark Theme (Over dark sections like video or footer) */
 .site-header.scrolled.header-dark {
     background: rgba(31, 24, 19, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -291,11 +303,12 @@ a:hover {
 @media (max-width: 768px) {
     .site-header.scrolled {
         width: calc(100% - 2rem);
+        transform: translateX(-50%) translateY(12px);
     }
 }
 
 .header-inner {
-    max-width: var(--container-max);
+    max-width: 1100px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -311,6 +324,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hindi-logo {
@@ -332,6 +346,7 @@ a:hover {
     color: var(--color-text-dark);
     position: relative;
     padding: 4px 0;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-link::after {
@@ -344,7 +359,7 @@ a:hover {
     background-color: var(--color-accent);
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-link:hover::after {
@@ -1809,7 +1824,7 @@ a:hover {
     height: 2px;
     background-color: var(--color-text-dark);
     border-radius: 2px;
-    transition: transform 0.35s ease, opacity 0.25s ease;
+    transition: transform 0.35s ease, opacity 0.25s ease, background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     transform-origin: center;
 }
 

@@ -37,6 +37,8 @@ function initMobileMenu() {
 }
 
 /* 1. Header Hide/Show & Floating Theme Transition on Scroll */
+let currentHeaderTheme = 'dark'; // Cache for current section theme under header
+
 function updateHeaderTheme() {
     const header = document.querySelector('.site-header');
     if (!header) return;
@@ -46,20 +48,7 @@ function updateHeaderTheme() {
         return;
     }
 
-    const headerRect = header.getBoundingClientRect();
-    const headerMidY = headerRect.top + headerRect.height / 2;
-
-    const darkSections = document.querySelectorAll('.hero-section, .visit-section, .site-footer');
-    let isOverDark = false;
-
-    darkSections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (headerMidY >= rect.top && headerMidY <= rect.bottom) {
-            isOverDark = true;
-        }
-    });
-
-    if (isOverDark) {
+    if (currentHeaderTheme === 'dark') {
         header.classList.add('header-dark');
         header.classList.remove('header-light');
     } else {
@@ -71,21 +60,52 @@ function updateHeaderTheme() {
 function initHeaderScroll() {
     const header = document.querySelector('.site-header');
     if (!header) return;
-    
-    const handleScroll = () => {
-        const currentScroll = window.scrollY;
 
-        // Toggle floating class when scrolled past threshold
-        if (currentScroll > 80) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+    // Use IntersectionObserver to track the section theme currently under the header.
+    // This runs asynchronously in the browser and completely avoids layout thrashing!
+    const themeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const isDark = target.classList.contains('hero-section') || 
+                               target.classList.contains('visit-section') || 
+                               target.classList.contains('site-footer');
+                currentHeaderTheme = isDark ? 'dark' : 'light';
+                updateHeaderTheme();
+            }
+        });
+    }, {
+        root: null,
+        // Detect intersection with a narrow horizontal bar near the top of the viewport (Y = 40px)
+        rootMargin: '-40px 0px -95% 0px',
+        threshold: 0
+    });
+
+    // Observe all sections and footer to detect layout transitions
+    const sections = document.querySelectorAll('section, footer');
+    sections.forEach(section => themeObserver.observe(section));
+    
+    let ticked = false;
+    const handleScroll = () => {
+        if (!ticked) {
+            window.requestAnimationFrame(() => {
+                const currentScroll = window.scrollY;
+
+                // Toggle floating class when scrolled past threshold
+                if (currentScroll > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                updateHeaderTheme();
+                ticked = false;
+            });
+            ticked = true;
         }
-        
-        updateHeaderTheme();
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 }
 
