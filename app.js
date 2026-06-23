@@ -120,11 +120,11 @@ function initBookingForm() {
 
         // Open WhatsApp chat in a new tab with pre-filled message
         const whatsappNumber = '918377893379';
-        const messageText = `Can I get a reservation for:
+        const messageText = `Hi Jagan! Could I get a reservation for:
 - Name: ${name}
 - Date: ${dateFormatted}
 - Time: ${time}
-- Guests: ${guestCount} ${guestCount === 1 ? 'Guest' : 'Guests'}`;
+- Guests: ${guestCount} ${guestCount === 1 ? 'Guest' : 'Guests'}?`;
         
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
         window.open(whatsappUrl, '_blank');
@@ -151,9 +151,9 @@ function initBookingForm() {
     });
 }
 
-/* 4. Menu Section Carousels (Food & Beverages) */
+/* 4. Menu Section Carousels (Food, Beverages & Gallery) */
 function initMenuCarousels() {
-    const carousels = ['foodCarousel', 'beverageCarousel'];
+    const carousels = ['foodCarousel', 'beverageCarousel', 'galleryCarousel'];
     
     carousels.forEach(carouselId => {
         const carousel = document.getElementById(carouselId);

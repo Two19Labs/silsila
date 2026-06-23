@@ -311,57 +311,95 @@
         <!-- GALLERY SECTION -->
         <section class="gallery-section" id="gallery">
             <div class="section-header text-center reveal-slide-up">
-                <span class="section-tagline">A LOOK INSIDE</span>
-                <h2 class="section-title">Gallery</h2>
+                <span class="section-tagline">THE VIBE &amp; SPACE</span>
+                <h2 class="section-title">Inside Silsila</h2>
             </div>
             
-            <div class="gallery-grid stagger-reveal">
-                <!-- Item 1: Wide interior shot -->
-                <div class="gallery-item item-wide stagger-item">
-                    <img src="assets/rack_wide.png" alt="Wide interior view of Silsila Cafe" class="gallery-photo">
-                    <div class="gallery-placeholder-overlay">
-                        <span class="photo-icon">📷</span>
-                        <span class="placeholder-text">Wide interior shot</span>
+            <div class="gallery-carousel-wrapper reveal-scale-up">
+                <div class="carousel-container" id="galleryCarousel">
+                    <div class="carousel-track">
+                        <!-- Card 1 -->
+                        <div class="carousel-card active" data-index="0">
+                            <img src="assets/rack_wide.png" alt="Wide interior racks and books at Silsila Cafe" class="card-img">
+                            <div class="card-overlay">
+                                <div class="card-details">
+                                    <span class="card-category">Vibe &amp; Space</span>
+                                    <h4 class="card-name">The Library Corner</h4>
+                                    <p class="card-description">A cozy corner filled with curated books, warm lights, and handcrafted details.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="carousel-card" data-index="1">
+                            <img src="assets/exterior.png" alt="Exterior view of Silsila Cafe nestled in Haldwani hills" class="card-img">
+                            <div class="card-overlay">
+                                <div class="card-details">
+                                    <span class="card-category">Our Haven</span>
+                                    <h4 class="card-name">Hills &amp; Havens</h4>
+                                    <p class="card-description">Nestled in the lush Haldwani hills, offering a quiet escape from the bustle.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="carousel-card" data-index="2">
+                            <img src="assets/pourover.png" alt="Steaming chai pour and brew process" class="card-img">
+                            <div class="card-overlay">
+                                <div class="card-details">
+                                    <span class="card-category">The Craft</span>
+                                    <h4 class="card-name">Artisanal Brewing</h4>
+                                    <p class="card-description">Watch our brewers craft every single cup of chai and coffee with absolute care.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="carousel-card" data-index="3">
+                            <img src="assets/details.png" alt="Handcrafted interior details and lighting" class="card-img">
+                            <div class="card-overlay">
+                                <div class="card-details">
+                                    <span class="card-category">Details</span>
+                                    <h4 class="card-name">Handcrafted Vibe</h4>
+                                    <p class="card-description">Warm textures, brass details, and locally sourced materials decorating our space.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="carousel-card" data-index="4">
+                            <img src="assets/jagan.png" alt="Jagan, our chief host at Silsila Cafe" class="card-img">
+                            <div class="card-overlay">
+                                <div class="card-details">
+                                    <span class="card-category">Our Team</span>
+                                    <h4 class="card-name">Meet Jagan</h4>
+                                    <p class="card-description">Our warm host and chief tea brewer, greeting every guest with a welcoming smile.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="carousel-card" data-index="5">
+                            <img src="assets/storefront.jpg" alt="Silsila Cafe storefront at evening" class="card-img">
+                            <div class="card-overlay">
+                                <div class="card-details">
+                                    <span class="card-category">Vibe &amp; Space</span>
+                                    <h4 class="card-name">Evening Glow</h4>
+                                    <p class="card-description">The cozy amber glow of our storefront welcoming you for a perfect evening brew.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- Item 2: Chai pour -->
-                <div class="gallery-item stagger-item">
-                    <img src="assets/pourover.png" alt="Chai pour process" class="gallery-photo">
-                    <div class="gallery-placeholder-overlay">
-                        <span class="photo-icon">📷</span>
-                        <span class="placeholder-text">Chai pour</span>
-                    </div>
-                </div>
-                <!-- Item 3: A plate -->
-                <div class="gallery-item stagger-item">
-                    <img src="assets/bites.png" alt="Kumaoni small plates" class="gallery-photo">
-                    <div class="gallery-placeholder-overlay">
-                        <span class="photo-icon">📷</span>
-                        <span class="placeholder-text">A plate</span>
-                    </div>
-                </div>
-                <!-- Item 4: Counter detail -->
-                <div class="gallery-item stagger-item">
-                    <img src="assets/details.png" alt="Counter detail elements" class="gallery-photo">
-                    <div class="gallery-placeholder-overlay">
-                        <span class="photo-icon">📷</span>
-                        <span class="placeholder-text">Counter detail</span>
-                    </div>
-                </div>
-                <!-- Item 5: Sweets -->
-                <div class="gallery-item stagger-item">
-                    <img src="assets/coffee.png" alt="Sweets serving" class="gallery-photo">
-                    <div class="gallery-placeholder-overlay">
-                        <span class="photo-icon">📷</span>
-                        <span class="placeholder-text">Sweets</span>
-                    </div>
-                </div>
-                <!-- Item 6: Guests -->
-                <div class="gallery-item stagger-item">
-                    <img src="assets/exterior.png" alt="Guests talking" class="gallery-photo">
-                    <div class="gallery-placeholder-overlay">
-                        <span class="photo-icon">📷</span>
-                        <span class="placeholder-text">Guests</span>
+                    
+                    <!-- Overlaid Controls inside the container -->
+                    <button class="carousel-nav-btn prev-btn" aria-label="Previous image">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <button class="carousel-nav-btn next-btn" aria-label="Next image">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                    <div class="carousel-dots-overlay">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
+                        <span class="dot" data-slide="5"></span>
                     </div>
                 </div>
             </div>
