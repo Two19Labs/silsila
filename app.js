@@ -36,35 +36,71 @@ function initMobileMenu() {
     });
 }
 
-/* 1. Header Hide/Show on Scroll */
+/* 1. Header Hide/Show & Floating Theme Transition on Scroll */
+function updateHeaderTheme() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    if (!header.classList.contains('scrolled')) {
+        header.classList.remove('header-dark', 'header-light');
+        return;
+    }
+
+    const headerRect = header.getBoundingClientRect();
+    const headerMidY = headerRect.top + headerRect.height / 2;
+
+    const darkSections = document.querySelectorAll('.hero-section, .visit-section, .site-footer');
+    let isOverDark = false;
+
+    darkSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (headerMidY >= rect.top && headerMidY <= rect.bottom) {
+            isOverDark = true;
+        }
+    });
+
+    if (isOverDark) {
+        header.classList.add('header-dark');
+        header.classList.remove('header-light');
+    } else {
+        header.classList.add('header-light');
+        header.classList.remove('header-dark');
+    }
+}
+
 function initHeaderScroll() {
     const header = document.querySelector('.site-header');
     if (!header) return;
     
     let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
         const currentScroll = window.scrollY;
 
-        // At the very top, remove classes
-        if (currentScroll <= 80) {
-            header.classList.remove('scroll-down', 'scroll-up');
-            return;
+        // Toggle floating class when scrolled past threshold
+        if (currentScroll > 80) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
 
-        // Scrolling down
-        if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+        // Smart hide/show behavior on scroll
+        if (currentScroll <= 80) {
+            header.classList.remove('scroll-down', 'scroll-up');
+        } else if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
             header.classList.remove('scroll-up');
             header.classList.add('scroll-down');
-        } 
-        // Scrolling up
-        else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+        } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
             header.classList.remove('scroll-down');
             header.classList.add('scroll-up');
         }
         
         lastScroll = currentScroll;
-    });
+        updateHeaderTheme();
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
 }
 
 /* 2. Interactive Guest Selector (Counter) */

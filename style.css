@@ -235,7 +235,7 @@ a:hover {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(var(--color-border-rgb), 0.6);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-header.scroll-down {
@@ -245,6 +245,71 @@ a:hover {
 .site-header.scroll-up {
     transform: translateY(0);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+}
+
+/* Scrolled Floating Cylindrical Nav */
+.site-header.scrolled {
+    width: calc(100% - 4rem);
+    max-width: 1100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    border-radius: 100px;
+    padding: 0.8rem 0;
+    box-shadow: 0 10px 40px rgba(31, 24, 19, 0.08);
+}
+
+.site-header.scrolled.scroll-down {
+    transform: translateX(-50%) translateY(-120%);
+}
+
+.site-header.scrolled.scroll-up {
+    transform: translateX(-50%) translateY(20px);
+    box-shadow: 0 10px 40px rgba(31, 24, 19, 0.12);
+}
+
+/* Scrolled Light Theme (Default, over light sections) */
+.site-header.scrolled.header-light {
+    background: rgba(250, 242, 236, 0.85);
+    border: 1px solid rgba(var(--color-border-rgb), 0.6);
+}
+
+.site-header.scrolled.header-light .logo,
+.site-header.scrolled.header-light .nav-link {
+    color: var(--color-text-dark);
+}
+
+.site-header.scrolled.header-light .nav-link::after {
+    background-color: var(--color-accent);
+}
+
+.site-header.scrolled.header-light .hamburger-line {
+    background-color: var(--color-text-dark);
+}
+
+/* Scrolled Dark Theme (Over dark sections like video or footer) */
+.site-header.scrolled.header-dark {
+    background: rgba(31, 24, 19, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.site-header.scrolled.header-dark .logo,
+.site-header.scrolled.header-dark .nav-link {
+    color: var(--color-text-light);
+}
+
+.site-header.scrolled.header-dark .nav-link::after {
+    background-color: var(--color-text-light);
+}
+
+.site-header.scrolled.header-dark .hamburger-line {
+    background-color: var(--color-text-light);
+}
+
+@media (max-width: 768px) {
+    .site-header.scrolled {
+        width: calc(100% - 2rem);
+    }
 }
 
 .header-inner {
