@@ -169,7 +169,7 @@ function initMenuCarousels() {
         
         let currentIndex = 0;
         let slideInterval;
-        const intervalTime = 5000; // 5 seconds
+        const intervalTime = 3000; // 3 seconds
         
         // Show specific card and assign stack classes
         function showCard(index) {
