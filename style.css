@@ -94,6 +94,19 @@ a:hover {
     background: var(--color-accent);
 }
 
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-accent), var(--color-gold));
+    z-index: 2000;
+    transition: width 0.1s ease-out;
+}
+
+
 /* 3. Reusable Components & Buttons */
 .btn {
     display: inline-flex;
@@ -136,6 +149,19 @@ a:hover {
 .section-header {
     margin-bottom: 4rem;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.text-center .section-tagline,
+.text-center .section-title,
+.text-center .section-desc {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .section-tagline {
     font-family: var(--font-body);
@@ -1369,6 +1395,76 @@ a:hover {
     opacity: 0.85;
 }
 
+/* --------------------------------------------------
+   Scroll Reveal Animations
+-------------------------------------------------- */
+.reveal-fade,
+.reveal-slide-up,
+.reveal-slide-left,
+.reveal-slide-right,
+.reveal-scale-up,
+.stagger-item {
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+.reveal-fade.active {
+    opacity: 1;
+}
+
+.reveal-slide-up {
+    transform: translateY(40px);
+}
+.reveal-slide-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-slide-left {
+    transform: translateX(-45px);
+}
+.reveal-slide-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-slide-right {
+    transform: translateX(45px);
+}
+.reveal-slide-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale-up {
+    transform: scale(0.96) translateY(25px);
+}
+.reveal-scale-up.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.stagger-item {
+    transform: translateY(30px);
+}
+.stagger-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ensure above fold animations load correctly without scroll */
+.hero-tagline.active,
+.hero-title.active,
+.hero-hindi-subtitle.active,
+.hero-description.active,
+.hero-buttons.active,
+.hero-stats.active,
+.hero-arch-frame.active {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
 /* 12. Media Queries (Responsiveness) */
 @media (max-width: 1024px) {
     :root {
@@ -1426,6 +1522,21 @@ a:hover {
     .visit-container {
         grid-template-columns: 1fr;
         gap: 4rem;
+    }
+    
+    .visit-left {
+        text-align: center;
+    }
+    
+    .visit-info-blocks {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .visit-map-container {
+        margin: 0 auto;
+        max-width: 500px;
     }
     
     .booking-card {
