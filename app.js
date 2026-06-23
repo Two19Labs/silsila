@@ -415,3 +415,38 @@ function initParallaxScroll() {
     }, { passive: true });
 }
 
+/* --------------------------------------------------
+   BUILD WITH DAAJU VIDEO PLAYER
+-------------------------------------------------- */
+function toggleDaajuVideo() {
+    const video = document.getElementById('daajuVideo');
+    const overlay = document.getElementById('videoPlayOverlay');
+    if (!video || !overlay) return;
+
+    if (video.paused) {
+        video.play();
+        overlay.classList.add('hidden');
+    } else {
+        video.pause();
+        overlay.classList.remove('hidden');
+    }
+}
+
+// Re-show overlay when video ends
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('daajuVideo');
+    const overlay = document.getElementById('videoPlayOverlay');
+    if (video && overlay) {
+        video.addEventListener('ended', () => {
+            overlay.classList.remove('hidden');
+        });
+
+        // Also allow clicking on the video itself to pause
+        video.addEventListener('click', () => {
+            if (!video.paused) {
+                video.pause();
+                overlay.classList.remove('hidden');
+            }
+        });
+    }
+});
