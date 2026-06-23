@@ -108,150 +108,198 @@
                 <p class="section-desc">Kumaoni home cooking and chai-house comfort, made fresh through the day. Prices in ₹.</p>
             </div>
             
-            <div class="menu-container">
-                <!-- Column 1: Chai & Coffee & All-Day Plates -->
-                <div class="menu-column">
-                    <!-- Card 1: Chai & Coffee -->
-                    <div class="menu-card">
-                        <h3 class="menu-card-title">Chai &amp; Coffee</h3>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Silsila Special Chai</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">40</span>
+            <div class="menu-container-revamped">
+                <!-- Food Row: Carousel on Left, Editorial on Right -->
+                <div class="menu-row food-row">
+                    <div class="menu-carousel-column">
+                        <div class="carousel-container" id="foodCarousel">
+                            <div class="carousel-track">
+                                <!-- Card 1: Bhatt ki Churkani -->
+                                <div class="carousel-card active" data-index="0">
+                                    <img src="assets/menu_bhatt_churkani.png" alt="Bhatt ki Churkani & Rice" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-badge">Signature</div>
+                                        <div class="card-details">
+                                            <span class="card-category">All-Day Plates</span>
+                                            <h4 class="card-name">Bhatt ki Churkani &amp; Rice</h4>
+                                            <p class="card-description">Traditional Kumaoni black bean curry slow-cooked in an iron wok, served with steaming basmati rice.</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹220</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Kumaoni Buransh Cooler</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">120</span>
+                                <!-- Card 2: Aloo ke Gutke -->
+                                <div class="carousel-card" data-index="1">
+                                    <img src="assets/menu_aloo_gutke.png" alt="Aloo ke Gutke" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-badge">Popular</div>
+                                        <div class="card-details">
+                                            <span class="card-category">Small Plates &amp; Chaat</span>
+                                            <h4 class="card-name">Aloo ke Gutke</h4>
+                                            <p class="card-description">Parboiled potatoes tossed in mustard oil, red chilies, and wild mountain herbs (Jambu).</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹140</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">South Indian Filter Coffee</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">60</span>
+                                <!-- Card 3: Pahadi Pakora -->
+                                <div class="carousel-card" data-index="2">
+                                    <img src="assets/menu_pahadi_pakora.png" alt="Pahadi Pakora Platter" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-badge">Fresh</div>
+                                        <div class="card-details">
+                                            <span class="card-category">Small Plates &amp; Chaat</span>
+                                            <h4 class="card-name">Pahadi Pakora Platter</h4>
+                                            <p class="card-description">Crispy seasonal vegetable fritters spiced with local herbs, served with spicy hemp seed chutney.</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹160</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Masala Hot Chocolate</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">110</span>
+                                <!-- Card 4: Samosa Chaat -->
+                                <div class="carousel-card" data-index="3">
+                                    <img src="assets/bites.png" alt="Samosa Chaat" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-details">
+                                            <span class="card-category">Small Plates &amp; Chaat</span>
+                                            <h4 class="card-name">Samosa Chaat</h4>
+                                            <p class="card-description">Crushed spiced samosas topped with tangy tamarind chutney, mint chutney, yogurt, and fine sev.</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹120</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                        </ul>
+                                <!-- Card 5: Bal Mithai -->
+                                <div class="carousel-card" data-index="4">
+                                    <img src="assets/menu_bal_mithai.png" alt="Bal Mithai" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-badge">Authentic</div>
+                                        <div class="card-details">
+                                            <span class="card-category">Sweets</span>
+                                            <h4 class="card-name">Bal Mithai</h4>
+                                            <p class="card-description">The iconic Kumaoni roasted milk fudge, coated with white sugar globules. A sweet piece of Almora.</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹90</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <!-- Card 2: All-Day Plates -->
-                    <div class="menu-card">
-                        <h3 class="menu-card-title">All-Day Plates</h3>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Bhatt ki Churkani &amp; Rice</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">220</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Aloo Paratha &amp; Curd</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">150</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Pahadi-style Masala Maggi</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">110</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Mountain Thukpa Bowl</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">190</span>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="menu-editorial-column">
+                        <span class="editorial-tagline">THE SOUL PLATES</span>
+                        <h3 class="editorial-title">Kumaoni Comfort &amp; Mains</h3>
+                        <p class="editorial-desc">Hearty, comforting dishes prepared with traditional grains, local herbs, and recipes passed down through generations. A true taste of mountain home-cooking.</p>
+                        
+                        <div class="carousel-controls" data-carousel="foodCarousel">
+                            <button class="control-btn prev-btn" aria-label="Previous dish">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                            </button>
+                            <div class="carousel-dots">
+                                <span class="dot active" data-slide="0"></span>
+                                <span class="dot" data-slide="1"></span>
+                                <span class="dot" data-slide="2"></span>
+                                <span class="dot" data-slide="3"></span>
+                                <span class="dot" data-slide="4"></span>
+                            </div>
+                            <button class="control-btn next-btn" aria-label="Next dish">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Column 2: Small Plates & Sweets -->
-                <div class="menu-column">
-                    <!-- Card 3: Small Plates & Chaat -->
-                    <div class="menu-card">
-                        <h3 class="menu-card-title">Small Plates &amp; Chaat</h3>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Aloo ke Gutke</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">140</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Samosa Chaat</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">120</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Bun Maska</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">70</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Pahadi Pakora Platter</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">160</span>
-                                </div>
-                            </li>
-                        </ul>
+
+                <!-- Beverage Row: Editorial on Left, Carousel on Right -->
+                <div class="menu-row beverage-row">
+                    <div class="menu-editorial-column">
+                        <span class="editorial-tagline">THE BREWS &amp; COOLERS</span>
+                        <h3 class="editorial-title">Chais, Infusions &amp; Coffees</h3>
+                        <p class="editorial-desc">From our signature spice-brewed chai to refreshing floral coolers and artisanal coffees, these beverages are crafted to revive and refresh you.</p>
+                        
+                        <div class="carousel-controls" data-carousel="beverageCarousel">
+                            <button class="control-btn prev-btn" aria-label="Previous beverage">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                            </button>
+                            <div class="carousel-dots">
+                                <span class="dot active" data-slide="0"></span>
+                                <span class="dot" data-slide="1"></span>
+                                <span class="dot" data-slide="2"></span>
+                                <span class="dot" data-slide="3"></span>
+                            </div>
+                            <button class="control-btn next-btn" aria-label="Next beverage">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
                     </div>
-                    
-                    <!-- Card 4: Sweets -->
-                    <div class="menu-card">
-                        <h3 class="menu-card-title">Sweets</h3>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Bal Mithai</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">90</span>
+                    <div class="menu-carousel-column">
+                        <div class="carousel-container" id="beverageCarousel">
+                            <div class="carousel-track">
+                                <!-- Card 1: Silsila Special Chai -->
+                                <div class="carousel-card active" data-index="0">
+                                    <img src="assets/menu_special_chai.png" alt="Silsila Special Chai" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-badge">Must Try</div>
+                                        <div class="card-details">
+                                            <span class="card-category">Chai &amp; Coffee</span>
+                                            <h4 class="card-name">Silsila Special Chai</h4>
+                                            <p class="card-description">Our signature blend of mountain spices, fresh ginger, and milk, slow-brewed to perfection.</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹40</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Singori (malu-leaf)</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">80</span>
+                                <!-- Card 2: Kumaoni Buransh Cooler -->
+                                <div class="carousel-card" data-index="1">
+                                    <img src="assets/menu_buransh_cooler.png" alt="Kumaoni Buransh Cooler" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-badge">Seasonal</div>
+                                        <div class="card-details">
+                                            <span class="card-category">Chai &amp; Coffee</span>
+                                            <h4 class="card-name">Kumaoni Buransh Cooler</h4>
+                                            <p class="card-description">A refreshing crimson infusion of wild rhododendron petals, fresh mint, and lemon juice.</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹120</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Gulab Jamun (2 pc)</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">70</span>
+                                <!-- Card 3: South Indian Filter Coffee -->
+                                <div class="carousel-card" data-index="2">
+                                    <img src="assets/menu_filter_coffee.png" alt="South Indian Filter Coffee" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-badge">Classic</div>
+                                        <div class="card-details">
+                                            <span class="card-category">Chai &amp; Coffee</span>
+                                            <h4 class="card-name">South Indian Filter Coffee</h4>
+                                            <p class="card-description">Authentic chicory blend filter coffee, brewed double-decoction and frothed with hot milk.</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹60</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="menu-item-info">
-                                    <span class="item-name">Atta Halwa</span>
-                                    <span class="item-dots"></span>
-                                    <span class="item-price">100</span>
+                                <!-- Card 4: Masala Hot Chocolate -->
+                                <div class="carousel-card" data-index="3">
+                                    <img src="assets/coffee.png" alt="Masala Hot Chocolate" class="card-img">
+                                    <div class="card-overlay">
+                                        <div class="card-details">
+                                            <span class="card-category">Chai &amp; Coffee</span>
+                                            <h4 class="card-name">Masala Hot Chocolate</h4>
+                                            <p class="card-description">Rich dark cocoa infusion spiced with a hint of mountain cinnamon, chili flakes, and nutmeg.</p>
+                                            <div class="card-footer">
+                                                <span class="card-price">₹110</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

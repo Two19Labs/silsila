@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initGuestCounter();
     initBookingForm();
+    initMenuCarousels();
 });
 
 /* 1. Header Hide/Show on Scroll */
@@ -133,5 +134,128 @@ function initBookingForm() {
         setTimeout(() => {
             successMsg.style.display = 'none';
         }, 400);
+    });
+}
+
+/* 4. Menu Section Carousels (Food & Beverages) */
+function initMenuCarousels() {
+    const carousels = ['foodCarousel', 'beverageCarousel'];
+    
+    carousels.forEach(carouselId => {
+        const carousel = document.getElementById(carouselId);
+        if (!carousel) return;
+        
+        const track = carousel.querySelector('.carousel-track');
+        const cards = Array.from(carousel.querySelectorAll('.carousel-card'));
+        const controls = document.querySelector(`.carousel-controls[data-carousel="${carouselId}"]`);
+        if (!controls) return;
+        
+        const dots = Array.from(controls.querySelectorAll('.dot'));
+        const prevBtn = controls.querySelector('.prev-btn');
+        const nextBtn = controls.querySelector('.next-btn');
+        
+        let currentIndex = 0;
+        let slideInterval;
+        const intervalTime = 5000; // 5 seconds
+        
+        // Show specific card
+        function showCard(index) {
+            // Remove active classes
+            cards.forEach(card => card.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Handle wrap-around index
+            if (index >= cards.length) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = cards.length - 1;
+            } else {
+                currentIndex = index;
+            }
+            
+            // Set active class
+            cards[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+        }
+        
+        // Start auto play
+        function startAutoPlay() {
+            stopAutoPlay();
+            slideInterval = setInterval(() => {
+                showCard(currentIndex + 1);
+            }, intervalTime);
+        }
+        
+        // Stop auto play
+        function stopAutoPlay() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+            }
+        }
+        
+        // Manual control handlers
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                showCard(currentIndex + 1);
+                startAutoPlay(); // Reset timer
+            });
+        }
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                showCard(currentIndex - 1);
+                startAutoPlay(); // Reset timer
+            });
+        }
+        
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const targetIndex = parseInt(dot.getAttribute('data-slide'));
+                showCard(targetIndex);
+                startAutoPlay(); // Reset timer
+            });
+        });
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => {
+            stopAutoPlay();
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+        
+        // Support swipe gestures on mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoPlay();
+        }, { passive: true });
+        
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoPlay();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const threshold = 50; // min swipe distance in px
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    // Swiped left, show next card
+                    showCard(currentIndex + 1);
+                } else {
+                    // Swiped right, show prev card
+                    showCard(currentIndex - 1);
+                }
+            }
+        }
+        
+        // Initialize
+        startAutoPlay();
     });
 }
