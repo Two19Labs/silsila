@@ -1006,6 +1006,10 @@ a:hover {
     white-space: nowrap;
 }
 
+.frame-back .frame-label {
+    left: 35%;
+}
+
 .story-right {
     display: flex;
     flex-direction: column;
