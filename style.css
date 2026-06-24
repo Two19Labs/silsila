@@ -61,6 +61,7 @@ body {
     background-size: 28px 28px;
     position: relative;
     width: 100%;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -927,12 +928,22 @@ a:hover {
 }
 
 .carousel-dots-overlay .dot {
+    position: relative;
     width: 7px;
     height: 7px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.35);
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.carousel-dots-overlay .dot::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
 }
 
 .carousel-dots-overlay .dot:hover {
@@ -1505,8 +1516,7 @@ a:hover {
     letter-spacing: 1px;
 }
 
-.form-group input, 
-.form-group select {
+.form-group input {
     background-color: var(--color-bg-light);
     border: 1px solid var(--color-border);
     padding: 0.9rem 1.2rem;
@@ -1517,6 +1527,25 @@ a:hover {
     transition: border-color 0.3s ease, background-color 0.3s ease;
     width: 100%;
     outline: none;
+}
+
+.form-group select {
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    padding: 0.9rem 2.5rem 0.9rem 1.2rem;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    width: 100%;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233d271d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    background-size: 1.1rem;
 }
 
 .form-group input:focus, 
@@ -1889,7 +1918,7 @@ a:hover {
     display: block;
     width: 22px;
     height: 2px;
-    background-color: var(--color-text-dark);
+    background-color: var(--color-text-light);
     border-radius: 2px;
     transition: transform 0.35s ease, opacity 0.25s ease, background-color 0.7s cubic-bezier(0.25, 1, 0.5, 1);
     transform-origin: center;
@@ -1905,6 +1934,24 @@ a:hover {
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Make header background transparent and remove border/blur when mobile nav overlay is active */
+.site-header:has(.mobile-menu-toggle.active) {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+.site-header:has(.mobile-menu-toggle.active) .logo {
+    color: var(--color-text-dark) !important;
+    text-shadow: none !important;
+}
+
+.site-header:has(.mobile-menu-toggle.active) .hamburger-line {
+    background-color: var(--color-text-dark) !important;
 }
 
 /* ---- Mobile Nav Overlay ---- */
@@ -2076,7 +2123,7 @@ a:hover {
     }
 
     .video-showcase-frame {
-        max-width: 340px;
+        max-width: 420px;
         margin: 0 auto;
     }
     
@@ -2153,6 +2200,10 @@ a:hover {
 
     .hero-title {
         font-size: clamp(2.6rem, 10vw, 3.8rem);
+    }
+
+    .hero-title br {
+        display: none;
     }
 
     .hero-hindi-subtitle {
@@ -2392,7 +2443,9 @@ a:hover {
     }
 
     .video-showcase-frame {
-        max-width: 280px;
+        max-width: 340px;
+        width: 85%;
+        margin: 0 auto;
     }
 
     .play-btn-ring {
@@ -2467,9 +2520,13 @@ a:hover {
         margin-bottom: 1.8rem;
     }
 
-    .form-group input,
-    .form-group select {
+    .form-group input {
         padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .form-group select {
+        padding: 0.8rem 2.5rem 0.8rem 1rem;
         font-size: 0.9rem;
     }
 
@@ -2698,7 +2755,9 @@ a:hover {
 
     /* Video */
     .video-showcase-frame {
-        max-width: 240px;
+        max-width: 300px;
+        width: 85%;
+        margin: 0 auto;
     }
 
     .play-btn-ring {
@@ -2776,7 +2835,9 @@ a:hover {
     }
 
     .video-showcase-frame {
-        max-width: 200px;
+        max-width: 270px;
+        width: 90%;
+        margin: 0 auto;
     }
 
     .booking-card-title {

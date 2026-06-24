@@ -338,25 +338,30 @@ function initMenuCarousels() {
         
         // Support swipe gestures on mobile
         let touchStartX = 0;
+        let touchStartY = 0;
         let touchEndX = 0;
+        let touchEndY = 0;
         
         carousel.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
             stopAutoPlay();
         }, { passive: true });
         
         carousel.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
             startAutoPlay();
         }, { passive: true });
         
         function handleSwipe() {
             const threshold = 40; // swipe threshold in px
-            const diff = touchStartX - touchEndX;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
             
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0) {
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
                     showCard(currentIndex + 1);
                 } else {
                     showCard(currentIndex - 1);
